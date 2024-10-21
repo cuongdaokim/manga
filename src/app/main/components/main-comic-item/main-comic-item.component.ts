@@ -2,11 +2,19 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChapterModel } from 'src/app/models/chapter.model';
 import { ComicModel } from 'src/app/models/comic.model';
+import {
+  fadeInRightOnEnterAnimation,
+ fadeOutLeftOnLeaveAnimation
+} from "angular-animations";
 
 @Component({
   selector: 'app-main-comic-item',
   templateUrl: './main-comic-item.component.html',
-  styleUrls: ['./main-comic-item.component.scss']
+  styleUrls: ['./main-comic-item.component.scss'],
+  animations: [
+    fadeOutLeftOnLeaveAnimation(),
+    fadeInRightOnEnterAnimation()
+  ]
 })
 export class MainComicItemComponent implements OnInit {
   @Input() comic: ComicModel = new ComicModel();
@@ -23,10 +31,10 @@ export class MainComicItemComponent implements OnInit {
   }
 
   navigateToComicDetail(): void {
-    this.router.navigate([`/truyen-tranh/${this.comic.id}`]);
+    this.router.navigate([`/manga/${this.comic.id}`]);
   }
 
   navigateToChapter(index: number) {
-    this.router.navigate([`/truyen-tranh/${this.comic.id}/chuong/${index}`]);
+    this.router.navigate([`/manga/${this.comic.id}/chuong/${index}`]);
   }
 }

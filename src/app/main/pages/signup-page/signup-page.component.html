@@ -1,4 +1,4 @@
-<div class="signup-page">
+<div class="signup-page"  [@slideInRightOnEnter]>
   <div class="signup-container">
     <div class="signup-image">
       <img src="assets/imgs/register.webp" style="padding: 1.5rem"/>
@@ -82,7 +82,7 @@
             class="alert alert-danger"
           >
             <div *ngIf="repass!.errors?.['required']">
-              ReEnter Password
+              Password not match
             </div>
           </div>
         </div>

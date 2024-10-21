@@ -1,52 +1,84 @@
-<div class="home-page">
-    <div class="container">
-        <div class="slider">
-            <h2 class="title">Manga xem nhiều nhất ></h2>
-            <owl-carousel-o [options]="customOptions">
-                <ng-template carouselSlide *ngFor="let comic of listRecommends">
-                    <app-slide-comic-item [comic]="comic"></app-slide-comic-item>
-                </ng-template>
-            </owl-carousel-o>
+<div class="container mx-auto my-8">
+  <div class="space-y-8">
+    <div class="slider">
+      <div class="flex flex-row items-center mb-4">
+        <div
+          class="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-red-500 via-orange-400 to-yellow-500 mr-2 rounded">
+          <i class="uil uil-star text-white text-2xl font-bold"></i>
         </div>
+        <h2 class="text-xl font-bold">Staff Picks</h2>
+      </div>
 
-        <div class="wrapper">
-            <div class="newly-added">
-                <h2 class="title">Manga mới cập nhật ></h2>
-                <div class="comic-container">
-                    <app-main-comic-item
-                        *ngFor="let comic of listComics | paginate: { itemsPerPage: 12, currentPage: pageIndex }"
-                        [comic]="comic"></app-main-comic-item>
-                </div>
-
-                <div class="paginator">
-                    <pagination-controls previousLabel="" nextLabel="" [autoHide]="true" [responsive]="true"
-                        (pageChange)="pageIndex = $event">
-                    </pagination-controls>
-                </div>
-            </div>
-
-            <div class="extra">
-                <div class="history" *ngIf="listHistories.length > 0">
-                    <div class="header">
-                        <span>Lịch sử đọc truyện</span>
-                    </div>
-                    <div class="items">
-                        <app-mini-comic-item *ngFor="let comic of listHistories; let i=index" [comic]="comic"
-                            [index]="i" (onDelete)="deleteHistoryItem($event)"></app-mini-comic-item>
-                    </div>
-                </div>
-
-                <div class="genre-group">
-                    <div class="header">
-                        <span>Genre</span>
-                    </div>
-                    <div class="items">
-                        <a *ngFor="let genre of listGenres" (click)="searchByGenre(genre.id)">
-                            {{genre.name}}
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide *ngFor="let comic of listRecommends">
+          <app-slide-comic-item [comic]="comic"></app-slide-comic-item>
+        </ng-template>
+      </owl-carousel-o>
     </div>
+
+    <!--Lastest Update-->
+    <div class="">
+      <div class="">
+        <div class="flex flex-row items-center mb-4">
+          <div
+            class="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-red-500 via-orange-400 to-yellow-500 mr-2 rounded">
+            <i class="uil uil-clock text-white text-2xl font-bold"></i>
+          </div>
+          <h2 class="text-xl font-bold">Latest Updates</h2>
+        </div>
+        <div class="grid grid-cols-6 gap-4">
+          <app-main-comic-item
+            *ngFor="let comic of listComics | paginate: { itemsPerPage: 12, currentPage: pageIndex }"
+            [comic]="comic" class="col-span-1"></app-main-comic-item>
+        </div>
+
+        <div class="paginator">
+          <pagination-controls previousLabel="" nextLabel="" [autoHide]="true" [responsive]="true"
+                               (pageChange)="pageIndex = $event">
+          </pagination-controls>
+        </div>
+      </div>
+
+      <!--History -->
+      <div class="">
+        <div class="" *ngIf="listHistories.length > 0">
+          <div class="">
+            <span>History</span>
+          </div>
+          <div class="">
+            <app-mini-comic-item *ngFor="let comic of listHistories; let i=index" [comic]="comic"
+                                 [index]="i" (onDelete)="deleteHistoryItem($event)"></app-mini-comic-item>
+          </div>
+        </div>
+
+        <div class="">
+          <div class="">
+            <span>Genres</span>
+          </div>
+          <div class="">
+            <a *ngFor="let genre of listGenres" (click)="searchByGenre(genre.id)">
+              {{ genre.name }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  Recently Added-->
+    <div class="slider">
+      <div class="flex flex-row items-center mb-4">
+        <div
+          class="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-red-500 via-orange-400 to-yellow-500 mr-2 rounded">
+          <i class="uil uil-star text-white text-2xl font-bold"></i>
+        </div>
+        <h2 class="text-xl font-bold">Recently Added</h2>
+      </div>
+
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide *ngFor="let comic of listRecommends">
+          <app-slide-comic-item [comic]="comic"></app-slide-comic-item>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+  </div>
 </div>

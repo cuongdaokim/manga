@@ -1,26 +1,30 @@
-<div class="main-comic-item">
-    <div class="cover">
-        <img [src]="comic.getComicCover()" alt="">
+<div class="w-full"  [@fadeInRightOnEnter] [@fadeOutLeftOnLeave]>
+  <div class="relative">
+    <img
+      [src]="comic.getComicCover()"
+      alt=""
+      class="object-cover aspect-[2/3] rounded cursor-pointer"
+      (click)="navigateToComicDetail()"
+    >
 
-        <div class="more-info">
-            <div class="icon-group">
-                <i class="uil uil-eye"></i>
-                <span>{{comic.view}}</span>
-            </div>
-
-            <div class="icon-group">
-                <i class="uil uil-clock"></i>
-                <span>{{comic.getTimeDiff()}}</span>
-            </div>
-        </div>
+    <div class="absolute right-2 bottom-2 flex items-center space-x-1 bg-orange-600 p-1.5 rounded">
+      <i class="uil uil-eye text-white"></i>
+      <span class="text-white">{{ comic.view }}</span>
     </div>
 
-    <div class="info-group">
-        <a class="title" (click)="navigateToComicDetail()">{{comic.title}}</a>
-
-        <a *ngFor="let chapter of listChapters" (click)="navigateToChapter(chapter.chapterIndex)" class="chapter">
-            {{chapter.getChapterName(true)}}
-            <span class="text-muted">{{chapter.getTimeDiff()}}</span>
-        </a>
+    <div class="absolute top-2 right-2 flex items-center space-x-1 bg-gray-800/90 p-1 rounded">
+      <i class="uil uil-clock text-white"></i>
+      <span class="text-white">{{ comic.getTimeDiff() }}</span>
     </div>
+  </div>
+
+  <div class="text-center mt-2" >
+    <h1 cla (click)="navigateToComicDetail()">{{ comic.title }}</h1>
+
+    <h2 *ngFor="let chapter of listChapters" (click)="navigateToChapter(chapter.chapterIndex)" class="text-xs text-gray-800">
+      {{ chapter.getChapterName(true) }}
+      <span>- {{ chapter.getTimeDiff() }}</span>
+    </h2>
+  </div>
+
 </div>

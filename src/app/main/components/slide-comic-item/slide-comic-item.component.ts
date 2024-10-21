@@ -3,10 +3,12 @@ import { Router } from '@angular/router';
 import { ChapterModel } from 'src/app/models/chapter.model';
 import { ComicModel } from 'src/app/models/comic.model';
 
+
 @Component({
   selector: 'app-slide-comic-item',
   templateUrl: './slide-comic-item.component.html',
   styleUrls: ['./slide-comic-item.component.scss']
+
 })
 export class SlideComicItemComponent implements OnInit {
   @Input() comic: ComicModel = new ComicModel();
@@ -23,10 +25,10 @@ export class SlideComicItemComponent implements OnInit {
   }
 
   navigateToComicDetail(): void {
-    this.router.navigate([`/truyen-tranh/${this.comic.id}`]);
+    this.router.navigate([`/manga/${this.comic.id}`]);
   }
 
   navigateToChapter(index: number) {
-    this.router.navigate([`/truyen-tranh/${this.comic.id}/chuong/${index}`]);
+    this.router.navigate([`/manga/${this.comic.id}/chuong/${index}`]);
   }
 }

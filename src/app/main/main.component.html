@@ -1,34 +1,39 @@
-<header>
-  <div class="container">
-    <!-- Adding the logo image -->
-    <a class="logo clickable" [routerLink]="['']">
-      <img src="assets/imgs/logo.png" alt="MangaNoob Logo" class="logo-img"> MangaNoob
-    </a>
-
-    <!-- Search Bar -->
-    <form class="search-bar" (submit)="onSearch()">
-      <i class="uil uil-search"></i>
-      <input type="search" placeholder="Find your manga" [(ngModel)]="searchStr"
-             [ngModelOptions]="{standalone: true}">
-    </form>
-
-    <!-- Login and Register icons -->
-    <div class="login-group" [hidden]="getCurrentUser()">
-      <a class="clickable" [routerLink]="['dang-nhap']" title="Login">
-        <i class="uil uil-signin"></i>
-      </a>
-      <a class="clickable" [routerLink]="['dang-ky']" title="Register">
-        <i class="uil uil-user-plus"></i>
-      </a>
-    </div>
-
-    <!-- User Info -->
-    <div class="user-info clickable" [hidden]="!getCurrentUser()">
-      <div class="avatar">
-        <img [src]="getCurrentUser()?.getAvatar()" alt="User Avatar">
+<header class=" text-white bg-gray-900">
+  <div class="container mx-auto">
+    <div class="flex flex-row  items-center justify-between p-3.5">
+      <!-- Adding the logo image -->
+      <div class="w-12 flex items-center space-x-2" [routerLink]="['']">
+        <img src="assets/imgs/logo.png" alt="MangaNoob Logo" class="w-8 h-8 object-cover">
+        <span class="text-xl font-bold">MangaNoob</span>
       </div>
-      <span>{{getCurrentUser()?.name}}</span>
+
+      <!-- Search Bar -->
+      <form class="flex items-center bg-white text-gray-800 px-2 py-2 rounded-md w-1/2" (submit)="onSearch()">
+        <i class="uil uil-search text-gray-600"></i>
+        <input type="search" placeholder="Find your manga" [(ngModel)]="searchStr"
+               [ngModelOptions]="{standalone: true}"
+               class="focus:outline-none  focus:ring-indigo-500 w-full ml-2">
+      </form>
+
+      <!-- Login and Register icons -->
+      <div class="flex space-x-4" [hidden]="getCurrentUser()">
+        <a class="text-white hover:text-gray-400" [routerLink]="['dang-nhap']" title="Login">
+          <i class="uil uil-signin text-2xl"></i>
+        </a>
+        <a class="text-white hover:text-gray-400" [routerLink]="['dang-ky']" title="Register">
+          <i class="uil uil-user-plus text-2xl"></i>
+        </a>
+      </div>
+
+      <!-- User Info -->
+      <div class="user-info clickable" [hidden]="!getCurrentUser()">
+        <div class="avatar">
+          <img [src]="getCurrentUser()?.getAvatar()" alt="User Avatar">
+        </div>
+        <span>{{getCurrentUser()?.name}}</span>
+      </div>
     </div>
+
   </div>
 </header>
 
@@ -48,7 +53,7 @@
 <footer>
   <div class="footer-container">
     <div class="footer-section logo-section">
-      <h2>MangaNoob</h2>
+      <h2 class="font-black">MangaNoob</h2>
       <p>Your go-to place for the latest manga and updates!</p>
     </div>
     <div class="footer-section">
@@ -81,7 +86,7 @@
       </div>
     </div>
   </div>
-  <div class="footer-bottom">
+  <div class="p-6 text-right font-bold">
     <p>&copy; 2024 MangaNoob. All rights reserved.</p>
   </div>
 </footer>

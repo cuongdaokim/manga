@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AppComponent } from 'src/app/app.component';
-import { UserModel } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {UserModel} from 'src/app/models/user.model';
+import {UserService} from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
-import { MainComponent } from '../../main.component';
+import {MainComponent} from '../../main.component';
+import {slideInLeftOnEnterAnimation} from "angular-animations";
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
+  animations: [
+    slideInLeftOnEnterAnimation(),
+  ]
+
 })
 export class LoginPageComponent implements OnInit {
   loginUser: UserModel = new UserModel();
@@ -20,10 +24,16 @@ export class LoginPageComponent implements OnInit {
     pass: new FormControl('', Validators.required)
   });
 
-  get email() { return this.loginForm.get('email'); }
-  get pass() { return this.loginForm.get('pass'); }
+  constructor(private userService: UserService, private router: Router) {
+  }
 
-  constructor(private userService: UserService, private router: Router) { }
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get pass() {
+    return this.loginForm.get('pass');
+  }
 
   ngOnInit(): void {
   }
@@ -57,8 +67,7 @@ export class LoginPageComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           });
-        }
-        else if (error.status == 406) {
+        } else if (error.status == 406) {
           Swal.fire({
             position: 'top-end',
             icon: 'error',
@@ -66,8 +75,7 @@ export class LoginPageComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           });
-        }
-        else {
+        } else {
           console.log(error);
         }
       }

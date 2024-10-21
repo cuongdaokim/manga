@@ -34,7 +34,7 @@ export class ChapterModel implements IChapterModel {
 
     getChapterName(indexOnly?: boolean): string {
         let name = this.name ? ` - ${this.name}` : '';
-        let result = 'Chương ' + this.chapterIndex;
+        let result = 'Chapter ' + this.chapterIndex;
         return indexOnly ? result : result + name;
     }
 

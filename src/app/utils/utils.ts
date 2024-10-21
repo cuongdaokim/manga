@@ -23,14 +23,14 @@ export class Utils {
         let diff = Math.round((now.getTime() - date.getTime()) / 60000);
 
         if (diff < 1) {
-            return 'Mới đây';
+            return 'recently';
         } else if (diff < 60) {
-            return diff + ' phút trước';
+            return diff + ' minutes ago';
         } else if (diff < 1440) {
-            return Math.floor(diff / 60) + ' giờ trước';
+            return Math.floor(diff / 60) + ' hours ago';
         }
         else if (diff < 10080) {
-            return Math.floor(diff / 1440) + ' ngày trước';
+            return Math.floor(diff / 1440) + ' days ago';
         }
         else {
             return date.toLocaleDateString('en-GB');

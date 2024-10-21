@@ -23,7 +23,7 @@ import { MyProfilePageComponent } from './main/pages/my-profile-page/my-profile-
 import { SearchResultPageComponent } from './main/pages/search-result-page/search-result-page.component';
 import { SignupPageComponent } from './main/pages/signup-page/signup-page.component';
 
-const routes: Routes = [
+ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
@@ -31,8 +31,8 @@ const routes: Routes = [
       { path: '', component: HomePageComponent },
       { path: 'dang-nhap', component: LoginPageComponent },
       { path: 'dang-ky', component: SignupPageComponent },
-      { path: 'truyen-tranh/:id', component: ComicDetailPageComponent },
-      { path: 'truyen-tranh/:id/chuong/:chapterId', component: ComicChapterPageComponent },
+      { path: 'manga/:id', component: ComicDetailPageComponent },
+      { path: 'manga/:id/chuong/:chapterId', component: ComicChapterPageComponent },
       { path: 'tim-kiem/:keyword', component: SearchResultPageComponent },
       { path: 'tim-kiem/the-loai/:genreId', component: SearchResultPageComponent },
       { path: 'them-truyen', component: AddComicPageComponent },

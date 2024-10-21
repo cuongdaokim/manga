@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { AdminDashboardPageComponent } from './pages/admin-dashboard-page/admin-dashboard-page.component';
@@ -39,6 +39,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
     NgxPaginationModule
-  ]
+  ],
+  schemas:[NO_ERRORS_SCHEMA],
 })
 export class AdminModule { }

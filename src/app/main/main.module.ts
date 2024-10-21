@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
 import { ComicChapterPageComponent } from './pages/comic-chapter-page/comic-chapter-page.component';
@@ -7,7 +7,6 @@ import { CommentItemComponent } from './components/comment-item/comment-item.com
 import { MainComicItemComponent } from './components/main-comic-item/main-comic-item.component';
 import { MiniComicItemComponent } from './components/mini-comic-item/mini-comic-item.component';
 import { SlideComicItemComponent } from './components/slide-comic-item/slide-comic-item.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
@@ -22,11 +21,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddChapterPageComponent } from './pages/add-chapter-page/add-chapter-page.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
   declarations: [
     MainComponent,
+
     ComicChapterPageComponent,
     HomePageComponent,
     CommentItemComponent,
@@ -47,11 +48,12 @@ import { AddChapterPageComponent } from './pages/add-chapter-page/add-chapter-pa
     CommonModule,
     CarouselModule,
     RouterModule,
-    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
-    NgxPaginationModule
-  ]
+    NgxPaginationModule,
+  ],
+  schemas:[NO_ERRORS_SCHEMA],
+
 })
 export class MainModule { }

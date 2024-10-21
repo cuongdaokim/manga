@@ -4,11 +4,15 @@ import { Router } from '@angular/router';
 import { UserModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+import {slideInLeftOnEnterAnimation, slideInRightOnEnterAnimation, slideInUpOnEnterAnimation} from "angular-animations";
 
 @Component({
   selector: 'app-signup-page',
   templateUrl: './signup-page.component.html',
-  styleUrls: ['./signup-page.component.scss']
+  styleUrls: ['./signup-page.component.scss'],
+  animations: [
+    slideInRightOnEnterAnimation(),
+  ]
 })
 export class SignupPageComponent implements OnInit {
   newUser: UserModel = new UserModel();

@@ -20,11 +20,11 @@ export class MiniComicItemComponent implements OnInit {
   }
 
   navigateToComicDetail(): void {
-    this.router.navigate([`/truyen-tranh/${this.comic.id}`]);
+    this.router.navigate([`/manga/${this.comic.id}`]);
   }
 
   navigateToChapter(index: number): void {
-    this.router.navigate([`/truyen-tranh/${this.comic.id}/chuong/${index}`]);
+    this.router.navigate([`/manga/${this.comic.id}/chuong/${index}`]);
   }
 
   deleteItem(): void {
