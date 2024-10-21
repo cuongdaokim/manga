@@ -1,0 +1,99 @@
+<div class="signup-page">
+  <div class="signup-container">
+    <div class="signup-image">
+      <img src="assets/imgs/register.webp" style="padding: 1.5rem"/>
+    </div>
+
+    <div class="signup-form">
+      <h2>Register</h2>
+
+      <form [formGroup]="signUpForm">
+        <div class="input-group">
+          <label for="account-add-name">Username</label>
+          <input
+            id="account-add-name"
+            type="text"
+            maxlength="24"
+            [(ngModel)]="newUser.name"
+            formControlName="name"
+            placeholder="Enter Username"
+          />
+          <div
+            *ngIf="name!.invalid && (name!.dirty || name!.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="name!.errors?.['required']">
+              Enter Username
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="account-add-email">Email</label>
+          <input
+            id="account-add-email"
+            type="email"
+            maxlength="320"
+            [(ngModel)]="newUser.email"
+            formControlName="email"
+            placeholder="Enter email"
+          />
+          <div
+            *ngIf="email!.invalid && (email!.dirty || email!.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="email!.errors?.['required']">Email required</div>
+            <div *ngIf="email!.errors?.['email']">Email not valid</div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="account-add-pass">Password</label>
+          <input
+            id="account-add-pass"
+            type="password"
+            maxlength="128"
+            [(ngModel)]="newUser.pass"
+            formControlName="pass"
+            placeholder="Enter password"
+          />
+          <div
+            *ngIf="pass!.invalid && (pass!.dirty || pass!.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="pass!.errors?.['required']">
+              Please Enter Password
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="account-add-repass">Enter password again</label>
+          <input
+            id="account-add-repass"
+            type="password"
+            maxlength="128"
+            [(ngModel)]="retypePass"
+            formControlName="repass"
+            placeholder="Enter password"
+          />
+          <div
+            *ngIf="repass!.invalid && (repass!.dirty || repass!.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="repass!.errors?.['required']">
+              ReEnter Password
+            </div>
+          </div>
+        </div>
+
+        <button class="signup-btn" (click)="onRegister()">Register</button>
+
+        <div class="redirect-login">
+          <span>Already have an account? </span>
+          <a [routerLink]="['../dang-nhap']">Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+.my-profile-page {
+    .container {
+        flex-direction: column;
+        gap: 2rem;
+
+        .my-profile {
+            width: 100%;
+            display: grid;
+            padding: 0 10%;
+            grid-template-columns: 30% 65%;
+            gap: 5%;
+            align-items: center;
+
+            .avatar-group {
+                position: relative;
+                width: 15rem;
+                height: 15rem;
+
+                .avatar {
+                    border-radius: 50%;
+                    overflow: hidden;
+                    width: 100%;
+                    height: 100%;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .editor {
+                    position: absolute;
+                    font-size: 2rem;
+                    top: 2rem;
+                    right: 0;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    background-color: var(--color-gray);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    opacity: 0.8;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .profile-group {
+                width: 100%;
+
+                .info {
+                    display: grid;
+                    grid-template-columns: 35% 60%;
+                    gap: 5%;
+                    margin: 2rem 0;
+                    font-size: 1.2rem;
+
+                    .hightlight {
+                        color: var(--color-primary);
+                    }
+
+                    .name-group {
+                        .view {
+                            display: flex;
+                            gap: 1rem;
+                            align-items: center;
+
+                            i {
+                                background-color: var(--color-gray);
+                                padding: 0 0.2rem;
+                                border-radius: 0.2rem;
+                                color: var(--color-white);
+                            }
+                        }
+
+                        .edit {
+                            input {
+                                font-size: 1.2rem;
+                                border-bottom: 1px solid var(--color-primary);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .button-group {
+            display: flex;
+            gap: 2rem;
+
+            button {
+                width: 10rem;
+
+                &.btn-cancel {
+                    background-color: var(--color-danger);
+                }
+
+                &.btn-save {
+                    background-color: var(--color-success);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:992px) {
+    .my-profile-page {
+        .container {
+            .my-profile {
+                .avatar-group {
+                    width: 10rem;
+                    height: 10rem;
+                }
+            }
+        }
+    }
+}

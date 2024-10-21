@@ -1,0 +1,54 @@
+<div class="admin-genres-page">
+    <div class="topbar">
+        <div class="search">
+            <form (submit)="search()">
+                <input type="text" placeholder="Tìm kiếm..." [(ngModel)]="searchStr"
+                    [ngModelOptions]="{standalone: true}" (keyup)="offSearch()">
+                <i class="uil uil-search"></i>
+            </form>
+        </div>
+    </div>
+
+    <div class="title">
+        <h2>Quản lý thể loại</h2>
+    </div>
+
+    <div class="details">
+        <div class="list-genres">
+            <div class="cardHeader">
+                <h2>Danh sách thể loại</h2>
+                <a class="btn clickable" (click)="addGenre()">
+                    <i class="uil uil-plus-circle"></i>
+                    Thêm mới
+                </a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Mã thể loại</td>
+                        <td>Tên thể loại</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let genre of listGenres | paginate: { itemsPerPage: 10, currentPage: pageIndex }">
+                        <td>{{genre.id}}</td>
+                        <td>{{genre.name}}</td>
+                        <td>
+                            <span class="edit clickable" (click)="editGenre(genre.id)">
+                                <i class="uil uil-edit"></i>
+                            </span>
+                            <span class="remove clickable" (click)="removeGenre(genre.id)">
+                                <i class=" uil uil-trash-alt"></i>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <pagination-controls previousLabel="" nextLabel="" [autoHide]="true" [responsive]="true"
+            (pageChange)="pageIndex = $event" class="paginator">
+        </pagination-controls>
+    </div>
+</div>

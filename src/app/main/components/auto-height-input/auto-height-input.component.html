@@ -1,0 +1,6 @@
+<form class="auto-height-input">
+    <textarea id="comment_content" class="form-control" placeholder="Để lại bình luận của bạn..." aria-hidden="true"
+        (keyup)="autoGrowTextZone($event)" [(ngModel)]="commentStr" [ngModelOptions]="{standalone: true}">
+    </textarea>
+    <span><i class="uil uil-message clickable" (click)="postComment()"></i></span>
+</form>

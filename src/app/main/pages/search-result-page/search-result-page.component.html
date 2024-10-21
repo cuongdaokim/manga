@@ -1,0 +1,24 @@
+<div class="search-result-page">
+    <div class="container">
+        <div class="wrapper">
+            <div class="result-group">
+                <h2 class="title">Tìm {{genreData ? 'theo thể loại: '+ genreData.name : 'truyện'}}</h2>
+                <div class="comic-container">
+                    <app-main-comic-item *ngFor="let comic of listComics" [comic]="comic"></app-main-comic-item>
+                    <div *ngIf="listComics.length == 0" class="not-found">Không tìm thấy truyện</div>
+                </div>
+            </div>
+
+            <div class="genre-group">
+                <div class="header">
+                    <span>Genre</span>
+                </div>
+                <div class="items">
+                    <a *ngFor="let genre of listGenres" (click)="searchByGenre(genre.id)">
+                        {{genre.name}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

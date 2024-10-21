@@ -1,0 +1,19 @@
+<div class="slide-comic-item">
+    <img [src]="comic.getComicCover()" alt="">
+
+    <div class="info">
+        <a (click)="navigateToComicDetail()" class="title">
+            {{comic.title}}
+        </a>
+
+        <div class="chapter">
+            <a (click)="navigateToChapter(newestChapter.chapterIndex)">
+                {{newestChapter.getChapterName(true)}}
+            </a>
+            <div class="time">
+                <i class="uil uil-clock"></i>
+                <span class="text">{{newestChapter.getTimeDiff()}}</span>
+            </div>
+        </div>
+    </div>
+</div>

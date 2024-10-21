@@ -1,0 +1,17 @@
+<div class="comment-item">
+    <div class="avatar">
+        <img src="https://i.pinimg.com/736x/4d/09/f5/4d09f59689e7cce8d16d225e1bd423bd.jpg" alt="">
+    </div>
+
+    <div class="wrapper">
+        <span>
+            <div class="user-name text-bold">{{comment.user?.name}}</div>
+            <div class="comment">{{comment.comment}}</div>
+        </span>
+
+        <div class="more-info">
+            <h5 class="chapter-info" *ngIf="showChapter">Chapter {{comment.chapter?.chapterIndex}}</h5>
+            <h5 class="text-muted">{{comment.getTimeDiff()}}</h5>
+        </div>
+    </div>
+</div>

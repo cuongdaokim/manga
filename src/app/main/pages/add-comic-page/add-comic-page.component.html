@@ -1,0 +1,93 @@
+<div class="add-comic-page">
+    <div class="container">
+        <div class="header">
+            <h2>{{editId ? 'Cập nhật ' : 'Thêm '}}truyện</h2>
+        </div>
+
+        <div class="comic-group">
+            <form [formGroup]="addForm" class="input-fields">
+                <div>
+                    <label for="title">Tên truyện</label>
+                    <input id="title" type="text" maxlength="255" [(ngModel)]="newComic.title" formControlName="title">
+                    <div *ngIf="addForm.get('title')!.invalid && (addForm.get('title')!.dirty || addForm.get('title')!.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addForm.get('title')!.errors?.['required']">
+                            Vui lòng nhập tên truyện
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label for="author">Author</label>
+                    <input id="author" type="text" maxlength="255" [(ngModel)]="authorName" formControlName="author">
+                    <div *ngIf="addForm.get('author')!.invalid && (addForm.get('author')!.dirty || addForm.get('author')!.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addForm.get('author')!.errors?.['required']">
+                            Vui lòng nhập tên tác giả
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label for="genres">Genre</label>
+                    <ng-multiselect-dropdown #genreMultiSelect formControlName="genres" class="genres-multiselect"
+                        [placeholder]="'Chọn thể loại'" [settings]="dropdownSettings" [data]="dropdownList"
+                        [(ngModel)]="selectedItems" (click)="onMultiSelectTouched()">
+                    </ng-multiselect-dropdown>
+                    <div *ngIf="addForm.get('genres')!.invalid && addForm.get('genres')!.touched"
+                        class="alert alert-danger">
+                        <div *ngIf="addForm.get('genres')!.errors?.['multiRequired']">
+                            Vui lòng chọn thể loại
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label for="description">Mô tả</label>
+                    <textarea id="description" rows="5" maxlength="1000" [(ngModel)]="newComic.description"
+                        formControlName="description"></textarea>
+                </div>
+            </form>
+
+            <label for="upload-image" class="upload-cover clickable">
+                <div class="cover-wrapper">
+                    <img class="cover">
+                </div>
+                <span class="placeholder">Thêm bìa truyện</span>
+            </label>
+            <input id="upload-image" type="file" accept="image/*" (change)="onImageSelected($event)" hidden />
+        </div>
+
+        <div class="chapter-group">
+            <div class="header">
+                <div>
+                    <i class="uil uil-list-ul"></i>
+                    <span> DANH SÁCH CHƯƠNG</span>
+                </div>
+                <a class="add-chapter clickable" (click)="navigateToAddChapter()">
+                    <i class="uil uil-plus-circle"></i>
+                    Thêm chương
+                </a>
+            </div>
+
+            <ul class="chapters" [hidden]="newComic.chapters.length == 0">
+                <li class="chapter-item" *ngFor="let chapter of newComic.chapters">
+                    <a class="left" (click)="navigateToAddChapter(chapter)">
+                        {{chapter.getChapterName()}}
+                    </a>
+                    <span class="remove clickable" (click)="deleteChapter(chapter)">
+                        <i class=" uil uil-trash-alt"></i>
+                    </span>
+                </li>
+            </ul>
+
+            <div class="no-chapter">Chưa có chương truyện nào</div>
+        </div>
+
+        <div class="button-groups">
+            <button class="btn-back" (click)="goBack()">Back</button>
+            <button class="btn-add" (click)="postComic()">{{editId ? 'Cập nhật ' : 'Thêm '}}</button>
+        </div>
+    </div>
+</div>
+
+<div class="spinner hidden">
+    <div class="loader"></div>
+</div>

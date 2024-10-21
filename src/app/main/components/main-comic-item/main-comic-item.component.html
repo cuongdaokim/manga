@@ -1,0 +1,26 @@
+<div class="main-comic-item">
+    <div class="cover">
+        <img [src]="comic.getComicCover()" alt="">
+
+        <div class="more-info">
+            <div class="icon-group">
+                <i class="uil uil-eye"></i>
+                <span>{{comic.view}}</span>
+            </div>
+
+            <div class="icon-group">
+                <i class="uil uil-clock"></i>
+                <span>{{comic.getTimeDiff()}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-group">
+        <a class="title" (click)="navigateToComicDetail()">{{comic.title}}</a>
+
+        <a *ngFor="let chapter of listChapters" (click)="navigateToChapter(chapter.chapterIndex)" class="chapter">
+            {{chapter.getChapterName(true)}}
+            <span class="text-muted">{{chapter.getTimeDiff()}}</span>
+        </a>
+    </div>
+</div>

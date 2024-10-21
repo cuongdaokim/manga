@@ -1,0 +1,44 @@
+<div class="my-profile-page">
+    <div class="container">
+        <h2>Thông tin cá nhân</h2>
+        <div class="my-profile">
+            <div class="avatar-group">
+                <div class="avatar">
+                    <img [src]="user.getAvatar()" alt="">
+                </div>
+
+                <label for="upload-image" class="editor clickable">
+                    <i class="uil uil-image-edit"></i>
+                    <input id="upload-image" type="file" accept="image/*" (change)="onImageSelected($event)" hidden />
+                </label>
+            </div>
+
+            <div class="profile-group">
+                <div class="info">
+                    <span>Username</span>
+                    <div class="name-group">
+                        <div class="view">
+                            <span class="hightlight">{{user.name}}</span>
+                            <i class="uil uil-edit-alt clickable" (click)="editName()"></i>
+                        </div>
+                        <div class="edit" hidden>
+                            <input type=" text" placeholder="Nhập tên của bạn" [(ngModel)]="draftUserName">
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <span>Email</span>
+                    <span class="hightlight">{{user.email}}</span>
+                </div>
+                <div class="info">
+                    <span>Số truyện đã đăng</span>
+                    <span class="hightlight">{{comicCount}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="button-group" *ngIf="isEdit || avatarImage">
+            <button class="btn-cancel" (click)="cancelEdit()">Hủy</button>
+            <button class="btn-save" (click)="updateUserInfo()">Lưu</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="login-page">
+  <div class="login-container">
+    <div class="login-image">
+      <img src="assets/imgs/login.jpg" alt="Login Background"/>
+    </div>
+
+    <div class="login-form">
+      <h2>Login</h2>
+
+      <form [formGroup]="loginForm">
+        <div class="input-group">
+          <label for="login-email">Email</label>
+          <input
+            id="login-email"
+            type="email"
+            [(ngModel)]="loginUser.email"
+            formControlName="email"
+            placeholder="Enter your email"
+          />
+          <div
+            *ngIf="email!.invalid && (email!.dirty || email!.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="email!.errors?.['required']">Email required</div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="login-pass">Password</label>
+          <input
+            id="login-pass"
+            type="password"
+            [(ngModel)]="loginUser.pass"
+            formControlName="pass"
+            placeholder="Enter yout password"
+          />
+          <div
+            *ngIf="pass!.invalid && (pass!.dirty || pass!.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="pass!.errors?.['required']">
+              Password required
+            </div>
+          </div>
+        </div>
+
+        <button class="login-btn" (click)="onLogin()">Login</button>
+
+        <div class="redirect-signup">
+          <span>You dont have an account? </span>
+          <a [routerLink]="['../dang-ky']">Register</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

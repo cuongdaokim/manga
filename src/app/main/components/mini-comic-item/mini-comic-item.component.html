@@ -1,0 +1,20 @@
+<div class="mini-comic-item">
+    <div class="cover">
+        <img [src]="comic.getComicCover()" alt="">
+    </div>
+
+    <div class="info-group">
+        <a class="title" (click)="navigateToComicDetail()">{{comic.title}}</a>
+
+        <div class="small-info">
+            <a class="chapter" (click)="navigateToChapter(comic.continueChapterIndex!)">
+                Đọc tiếp chương {{comic.continueChapterIndex}} >
+            </a>
+
+            <span class="remove-button" (click)="deleteItem()">
+                <i class="uil uil-times-circle"></i>
+                Xóa
+            </span>
+        </div>
+    </div>
+</div>

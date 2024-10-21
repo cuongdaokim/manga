@@ -1,0 +1,74 @@
+.admin-add-account-page {
+    transition: 0.5s;
+    padding: 1rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+
+    .container {
+        flex-direction: column;
+        gap: 3rem;
+        margin-top: 3rem;
+
+        .wrapper {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+
+            .input-fields {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                font-size: 1.2rem;
+                width: 25rem;
+
+                input,
+                select {
+                    border: 1px solid var(--color-dark);
+                    border-radius: 0.5rem;
+                    padding: 0.5rem var(--card-padding);
+                    width: 100%;
+                    font-size: 1rem;
+                }
+
+                label {
+                    display: block;
+                    margin: 0.2rem;
+                    color: var(--color-primary);
+                }
+
+                input[readonly] {
+                    border-color: var(--color-primary);
+                }
+            }
+
+            .cover {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 15rem;
+                height: 20rem;
+                border: 1px dashed var(--color-gray);
+                color: var(--color-gray);
+                font-size: 2rem;
+                padding: 1rem;
+                text-align: center;
+            }
+        }
+
+        .button-groups {
+            display: flex;
+            gap: 2rem;
+
+            .btn-back {
+                background: var(--color-gray);
+            }
+
+            .btn-add {
+                background: var(--color-success);
+            }
+        }
+    }
+}

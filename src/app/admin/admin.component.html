@@ -1,0 +1,49 @@
+<nav>
+    <div class="navigation">
+        <div class="toggle clickable">
+            <img [src]="getCurrentUser()?.getAvatar()" alt="">
+        </div>
+        <ul>
+            <li>
+                <a href="quan-tri">
+                    <span class="icon"><i class="uil uil-house-user"></i></span>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="quan-tri/quan-ly-truyen">
+                    <span class="icon"><i class="uil uil-books"></i></span>
+                    <span class="title">Manga</span>
+                </a>
+            </li>
+            <li>
+                <a href="quan-tri/quan-ly-the-loai">
+                    <span class="icon"><i class="uil uil-apps"></i></span>
+                    <span class="title">Genre</span>
+                </a>
+            </li>
+            <li>
+                <a href="quan-tri/quan-ly-tac-gia">
+                    <span class="icon"><i class="uil uil-book-reader"></i></span>
+                    <span class="title">Author</span>
+                </a>
+            </li>
+            <li>
+                <a href="quan-tri/quan-ly-tai-khoan">
+                    <span class="icon"><i class="uil uil-users-alt"></i></span>
+                    <span class="title">Account</span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['']">
+                    <span class="icon"><i class="uil uil-signin"></i></span>
+                    <span class="title">Back</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<body>
+    <router-outlet></router-outlet>
+</body>

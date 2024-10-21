@@ -1,0 +1,73 @@
+<div class="admin-add-account-page">
+    <div class="container">
+        <div class="header">
+            <h2>{{editId ? 'Cập nhật ' : 'Thêm '}}người dùng</h2>
+        </div>
+
+        <div class="wrapper">
+            <form class="input-fields" [formGroup]="addForm">
+                <div>
+                    <label for="account-add-name">Username</label>
+                    <input id="account-add-name" type="text" maxlength="24" [(ngModel)]="newAccount.name"
+                        formControlName="name" [readonly]="editId">
+                    <div *ngIf="name!.invalid && (name!.dirty || name!.touched)" class="alert alert-danger">
+                        <div *ngIf="name!.errors?.['required']">
+                            Vui lòng nhập Username
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="account-add-email">Email</label>
+                    <input id="account-add-email" type="email" maxlength="320" [(ngModel)]="newAccount.email"
+                        formControlName="email" [readonly]="editId">
+                    <div *ngIf="email!.invalid && (email!.dirty || email!.touched)" class="alert alert-danger">
+                        <div *ngIf="email!.errors?.['required']">
+                            Vui lòng nhập email
+                        </div>
+                        <div *ngIf="email!.errors?.['email']">
+                            Email không hợp lệ
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="account-add-pass">Mật khẩu</label>
+                    <input id="account-add-pass" type="password" maxlength="128" [(ngModel)]="newAccount.pass"
+                        formControlName="pass" [readonly]="editId">
+                    <div *ngIf="pass!.invalid && (pass!.dirty || pass!.touched)" class="alert alert-danger">
+                        <div *ngIf="pass!.errors?.['required']">
+                            Vui lòng nhập mật khẩu
+                        </div>
+                    </div>
+                </div>
+
+                <div [hidden]="editId">
+                    <label for="account-add-repass">Nhập lại mật khẩu</label>
+                    <input id="account-add-repass" type="password" maxlength="128" [(ngModel)]="retypePass"
+                        formControlName="repass">
+                    <div *ngIf="repass!.invalid && (repass!.dirty || repass!.touched)" class="alert alert-danger">
+                        <div *ngIf="repass!.errors?.['required']">
+                            Vui lòng nhập lại mật khẩu
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="account-add-role">Cấp quyền</label>
+                    <select id="account-add-role" formControlName="role" [(ngModel)]="selectedRole"
+                        [value]="selectedRole">
+                        <option *ngFor=" let option of roleOptions" [value]="option.value">
+                            {{option.text}}
+                        </option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <div class="button-groups">
+            <button class="btn-back" (click)="goBack()">Back</button>
+            <button class="btn-add" (click)="postAccount()">{{editId ? 'Cập nhật ' : 'Thêm '}}</button>
+        </div>
+    </div>
+</div>

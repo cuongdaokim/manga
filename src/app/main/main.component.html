@@ -1,0 +1,89 @@
+<header>
+  <div class="container">
+    <!-- Adding the logo image -->
+    <a class="logo clickable" [routerLink]="['']">
+      <img src="assets/imgs/logo.png" alt="MangaNoob Logo" class="logo-img"> MangaNoob
+    </a>
+
+    <!-- Search Bar -->
+    <form class="search-bar" (submit)="onSearch()">
+      <i class="uil uil-search"></i>
+      <input type="search" placeholder="Find your manga" [(ngModel)]="searchStr"
+             [ngModelOptions]="{standalone: true}">
+    </form>
+
+    <!-- Login and Register icons -->
+    <div class="login-group" [hidden]="getCurrentUser()">
+      <a class="clickable" [routerLink]="['dang-nhap']" title="Login">
+        <i class="uil uil-signin"></i>
+      </a>
+      <a class="clickable" [routerLink]="['dang-ky']" title="Register">
+        <i class="uil uil-user-plus"></i>
+      </a>
+    </div>
+
+    <!-- User Info -->
+    <div class="user-info clickable" [hidden]="!getCurrentUser()">
+      <div class="avatar">
+        <img [src]="getCurrentUser()?.getAvatar()" alt="User Avatar">
+      </div>
+      <span>{{getCurrentUser()?.name}}</span>
+    </div>
+  </div>
+</header>
+
+
+<body>
+    <router-outlet></router-outlet>
+</body>
+
+
+<div class="hover-panel">
+  <a [routerLink]="['thong-tin-ca-nhan']"><i class="uil uil-user"></i>Thông tin cá nhân</a>
+  <a [routerLink]="['truyen-cua-toi']" *ngIf="!isAdmin()"><i class="uil uil-book-alt"></i>Manga của bạn</a>
+  <a [routerLink]="['quan-tri']" *ngIf="isAdmin()"><i class="uil uil-key-skeleton"></i>Quản trị</a>
+  <a (click)="onLogout()"><i class="uil uil-signin"></i>Đăng xuất</a>
+</div>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-section logo-section">
+      <h2>MangaNoob</h2>
+      <p>Your go-to place for the latest manga and updates!</p>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Latest Manga</a></li>
+        <li><a href="#">Popular Manga</a></li>
+        <li><a href="#">Genres</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Genres</h4>
+      <ul>
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Adventure</a></li>
+        <li><a href="#">Comedy</a></li>
+        <li><a href="#">Romance</a></li>
+        <li><a href="#">Fantasy</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="uil uil-facebook"></i></a>
+        <a href="#"><i class="uil uil-twitter"></i></a>
+        <a href="#"><i class="uil uil-instagram"></i></a>
+        <a href="#"><i class="uil uil-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 MangaNoob. All rights reserved.</p>
+  </div>
+</footer>
+
+

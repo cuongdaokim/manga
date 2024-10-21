@@ -1,0 +1,54 @@
+<div class="admin-authors-page">
+    <div class="topbar">
+        <div class="search">
+            <form (submit)="search()">
+                <input type="text" placeholder="Tìm kiếm..." [(ngModel)]="searchStr"
+                    [ngModelOptions]="{standalone: true}" (keyup)="offSearch()">
+                <i class="uil uil-search"></i>
+            </form>
+        </div>
+    </div>
+
+    <div class="title">
+        <h2>Quản lý tác giả</h2>
+    </div>
+
+    <div class="details">
+        <div class="list-authors">
+            <div class="cardHeader">
+                <h2>Danh sách tác giả</h2>
+                <a class="btn clickable" (click)="addAuthor()">
+                    <i class="uil uil-plus-circle"></i>
+                    Thêm mới
+                </a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Mã tác giả</td>
+                        <td>Tên tác giả</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let author of listAuthors | paginate: { itemsPerPage: 10, currentPage: pageIndex }">
+                        <td>{{author.id}}</td>
+                        <td>{{author.name}}</td>
+                        <td>
+                            <span class="edit clickable" (click)="editAuthor(author.id)">
+                                <i class="uil uil-edit"></i>
+                            </span>
+                            <span class="remove clickable" (click)="removeAuthor(author.id)">
+                                <i class=" uil uil-trash-alt"></i>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <pagination-controls previousLabel="" nextLabel="" [autoHide]="true" [responsive]="true"
+            (pageChange)="pageIndex = $event" class="paginator">
+        </pagination-controls>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="admin-add-chapter-page">
+    <div class="container">
+        <div class="header">
+            <h2>{{newChapter.id == 0 ? 'Thêm ': 'Cập nhật '}}chương truyện</h2>
+        </div>
+
+        <div class="wrapper">
+            <form class="input-fields" [formGroup]="addForm">
+                <div>
+                    <label for="name">Tên chương (nếu có)</label>
+                    <input id="name" type="text" maxlength="255" [(ngModel)]="newChapter.name" formControlName="name">
+                </div>
+                <div>
+                    <label for="index">Chương số</label>
+                    <input id="index" type="number" min="0" maxlength="11" [(ngModel)]="newChapter.chapterIndex"
+                        formControlName="index">
+                </div>
+            </form>
+
+            <div class="add-content-group">
+                <div class="header">
+                    <i class="uil uil-list-ul"></i>
+                    <span> DANH SÁCH CHƯƠNG</span>
+                </div>
+
+                <div class="contents"></div>
+
+                <label class="add-images clickable" for="upload-images">
+                    <i class="uil uil-image-plus"></i>
+                    Thêm ảnh
+                </label>
+                <input id="upload-images" type="file" accept="image/*" (change)="onImageSelected($event)" multiple
+                    hidden />
+            </div>
+        </div>
+
+        <div class="button-groups">
+            <button class="btn-back" (click)="goBack()">Back</button>
+            <button class="btn-add" (click)="postChapter()">{{newChapter.id == 0 ? 'Thêm ': 'Cập nhật '}}</button>
+        </div>
+    </div>
+
+    <div (click)="topFunction()" class="top-button">
+        <span class="arrow">
+            <i class="uil uil-angle-up"></i>
+        </span>
+        <span class="segunda">
+            <i class="uil uil-angle-up"></i>
+        </span>
+    </div>
+
+    <div class="move-group">
+        <button class="up" (click)="moveUp()"><i class="uil uil-angle-up"></i></button>
+        <button class="down" (click)="moveDown()"><i class="uil uil-angle-down"></i></button>
+    </div>
+</div>
+
+<div class="spinner hidden">
+    <div class="loader"></div>
+</div>

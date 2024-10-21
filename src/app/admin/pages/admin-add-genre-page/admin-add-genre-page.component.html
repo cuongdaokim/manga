@@ -1,0 +1,26 @@
+<div class="admin-add-genre-page">
+    <div class="container">
+        <div class="header">
+            <h2>{{editId ? 'Cập nhật ' : 'Thêm '}} thể loại</h2>
+        </div>
+
+        <div class="wrapper">
+            <form class="input-fields" [formGroup]="addForm">
+                <div>
+                    <label for="name">Tên thể loại</label>
+                    <input id="name" type="text" maxlength="255" [(ngModel)]="newGenre.name" formControlName="name">
+                    <div *ngIf="name!.invalid && (name!.dirty || name!.touched)" class="alert alert-danger">
+                        <div *ngIf="name!.errors?.['required']">
+                            Vui lòng nhập tên thể loại
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="button-groups">
+            <button class="btn-back" (click)="goBack()">Back</button>
+            <button class="btn-add" (click)="postGenre()">{{editId ? 'Cập nhật ' : 'Thêm '}}</button>
+        </div>
+    </div>
+</div>

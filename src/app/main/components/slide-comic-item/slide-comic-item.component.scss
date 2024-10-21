@@ -1,0 +1,52 @@
+.slide-comic-item {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    position: relative;
+    width: 13rem;
+    height: 14rem;
+    border: 1px solid var(--color-dark);
+    overflow: hidden;
+    cursor: pointer;
+
+    .info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        width: 100%;
+        color: var(--color-white);
+        background-color: var(--color-black);
+        background: url(../../../../assets/imgs/bg_over.png);
+        padding: 0.3rem;
+
+        a:hover {
+            color: red;
+        }
+
+        .title {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 1rem;
+        }
+
+        .chapter {
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.8rem;
+
+            .time {
+                display: flex;
+                align-items: center;
+                gap: 0.2rem;
+
+                .text {
+                    font-size: 0.7rem;
+                }
+            }
+        }
+    }
+}

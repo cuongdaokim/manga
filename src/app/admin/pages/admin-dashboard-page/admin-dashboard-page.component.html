@@ -1,0 +1,102 @@
+<div class="admin-dashboard-page">
+    <!-- <div class="topbar">
+        <div class="search">
+            <label for="">
+                <input type="text" placeholder="Tìm kiếm...">
+                <i class="uil uil-search"></i>
+            </label>
+        </div>
+    </div> -->
+
+    <div class="title">
+        <h2>Quản trị</h2>
+    </div>
+
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">{{statistic.totalComic}}</div>
+                <div class="cardName">Manga</div>
+            </div>
+            <div class="iconBx">
+                <i class="uil uil-books"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">{{statistic.totalGenre}}</div>
+                <div class="cardName">Genre</div>
+            </div>
+            <div class="iconBx">
+                <i class="uil uil-apps"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">{{statistic.totalAuthor}}</div>
+                <div class="cardName">Author</div>
+            </div>
+            <div class="iconBx">
+                <i class="uil uil-book-reader"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">{{statistic.totalUser}}</div>
+                <div class="cardName">Account</div>
+            </div>
+            <div class="iconBx">
+                <i class="uil uil-users-alt"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="details">
+        <div>
+            <div class="recent-comics">
+                <div class="cardHeader">
+                    <h2>Manga mới đăng</h2>
+                    <a [routerLink]="['quan-ly-truyen']" class="btn clickable">Xem tất cả</a>
+                </div>
+                <table (mouseleave)="onTableMouseLeave()">
+                    <thead>
+                        <tr>
+                            <td>Mã truyện</td>
+                            <td>Tên truyện</td>
+                            <td>Author</td>
+                            <td>Người đăng</td>
+                            <td>Trạng thái</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let comic of listComics" (mouseenter)="onRowDataHover(comic)">
+                            <td>{{comic.id}}</td>
+                            <td>{{comic.title}}</td>
+                            <td>{{comic.author?.name}}</td>
+                            <td>{{comic.user?.name}}</td>
+                            <td><span class="status" [ngClass]="comic.statusClass">{{comic.statusString}}</span></td>
+                            <td>
+                                <span class="edit clickable" (click)="editComic(comic.id)">
+                                    <i class="uil uil-edit"></i>
+                                </span>
+                                <span class="remove clickable" (click)="removeComic(comic.id)">
+                                    <i class=" uil uil-trash-alt"></i>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="preview">
+            <div class="cover" hidden>
+                <img src="" alt="">
+            </div>
+            <div class="placeholder">
+                <div>Bìa truyện</div>
+            </div>
+        </div>
+    </div>
+</div>

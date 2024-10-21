@@ -1,0 +1,51 @@
+<div class="comic-chapter-page">
+    <div class="title">
+        <a [routerLink]="['../../']">{{comicData.title}}</a>
+        <span> - Chương {{chapterData.chapterIndex}}</span>
+        <div class="time text-muted">[Cập nhật lúc {{updatedTime}}]</div>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="prev" (click)="previousChapter()"
+            [disabled]="this.comicData.chapters.at(-1) == this.chapterData">
+            <i class="uil uil-angle-left-b"></i>
+        </button>
+        <select title="chapter-select" (change)="navigateToChapterForSelect($event)">
+            <option *ngFor="let chapter of comicData.chapters" [value]="chapter.chapterIndex"
+                [selected]="chapter.chapterIndex == chapterData.chapterIndex">
+                {{chapter.getChapterName()}}
+            </option>
+        </select>
+        <button class="next" (click)="nextChapter()" [disabled]="this.comicData.chapters[0] == this.chapterData">
+            <i class="uil uil-angle-right-b"></i>
+        </button>
+    </div>
+
+    <div class="contents">
+        <img *ngFor="let content of listContents" [src]="content.getContentImage(comicData.id)" alt="">
+    </div>
+
+    <div class="comment-group">
+        <div class="header">
+            <i class="uil uil-comment-alt-lines"></i>
+            <span> BÌNH LUẬN</span>
+        </div>
+
+        <app-auto-height-input *ngIf="userData" [user]="userData" [chapter]="chapterData"
+            (onCommentPosted)="onCommentPosted($event)">
+        </app-auto-height-input>
+
+        <div class="list-comment">
+            <app-comment-item *ngFor="let comment of listComments" [comment]="comment"></app-comment-item>
+        </div>
+    </div>
+
+    <div (click)="topFunction()" class="top-button">
+        <span class="arrow">
+            <i class="uil uil-angle-up"></i>
+        </span>
+        <span class="segunda">
+            <i class="uil uil-angle-up"></i>
+        </span>
+    </div>
+</div>
