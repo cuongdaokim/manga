@@ -1,62 +1,58 @@
-<div class="admin-accounts-page">
-    <div class="topbar">
-        <div class="search">
-            <form (submit)="search()">
-                <input type="text" placeholder="Tìm kiếm..." [(ngModel)]="searchStr"
-                    [ngModelOptions]="{standalone: true}" (keyup)="offSearch()">
-                <i class="uil uil-search"></i>
-            </form>
-        </div>
-    </div>
+<div class=" bg-gray-100 min-h-screen py-8 flex items-center justify-center">
+  <div class="container mx-auto  max-w-4xl bg-white rounded-lg shadow-lg p-6">
 
-    <div class="title">
-        <h2>Quản lý tài khoản</h2>
+    <div class="title mb-6">
+      <h2 class="font-bold text-3xl text-gray-800">Account List</h2>
     </div>
 
     <div class="details">
-        <div class="list-accounts">
-            <div class="cardHeader">
-                <h2>Danh sách tài khoản</h2>
-                <a class="btn clickable" (click)="addAccount()">
-                    <i class="uil uil-plus-circle"></i>
-                    Thêm mới
-                </a>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Mã người dùng</td>
-                        <td>Username</td>
-                        <td>Email</td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let account of listAccounts | paginate: { itemsPerPage: 10, currentPage: pageIndex }">
-                        <td>{{account.id}}</td>
-                        <td>{{account.name}}</td>
-                        <td>{{account.email}}</td>
-                        <td>
-                            <span class="view clickable" (click)="editAccount(account.id)">
-                                <i class="uil uil-edit"></i>
-                            </span>
-                            <span class="lock clickable" *ngIf="!account.isDeleted" (click)="lockAccount(account)">
-                                <i class="uil uil-lock-alt"></i>
-                            </span>
-                            <span class="unlock clickable" *ngIf="account.isDeleted" (click)="lockAccount(account)">
-                                <i class="uil uil-lock-open-alt"></i>
-                            </span>
-                            <span class="remove clickable" (click)="removeAccount(account.id)" hidden>
-                                <i class=" uil uil-trash-alt"></i>
-                            </span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+      <div class="list-accounts mb-4">
+        <div class="cardHeader mb-4 flex justify-between items-center">
+          <a class="btn clickable bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700" (click)="addAccount()">
+            <i class="uil uil-plus-circle"></i>
+            Add new
+          </a>
         </div>
 
-        <pagination-controls previousLabel="" nextLabel="" [autoHide]="true" [responsive]="true"
-            (pageChange)="pageIndex = $event" class="paginator">
-        </pagination-controls>
+        <table class="min-w-full border border-gray-300">
+          <thead class="bg-gray-200">
+          <tr>
+            <th class="border-b border-gray-300 px-4 py-2 text-left">UserID</th>
+            <th class="border-b border-gray-300 px-4 py-2 text-left">Username</th>
+            <th class="border-b border-gray-300 px-4 py-2 text-left">Email</th>
+            <th class="border-b border-gray-300 px-4 py-2 text-left"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let account of listAccounts | paginate: { itemsPerPage: 10, currentPage: pageIndex }" class="hover:bg-gray-100">
+            <td class="border-b border-gray-300 px-4 py-2">{{ account.id }}</td>
+            <td class="border-b border-gray-300 px-4 py-2">{{ account.name }}</td>
+            <td class="border-b border-gray-300 px-4 py-2">{{ account.email }}</td>
+            <td class="border-b border-gray-300 px-4 py-2 flex justify-center space-x-4">
+  <span class="view clickable flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full p-2 transition-transform transform hover:scale-105 hover:bg-blue-700 shadow hover:shadow-lg" (click)="editAccount(account.id)">
+    <i class="uil uil-edit"></i>
+  </span>
+
+              <span class="lock clickable flex items-center justify-center w-8 h-8 bg-yellow-600 text-white rounded-full p-2 transition-transform transform hover:scale-105 hover:bg-yellow-700 shadow hover:shadow-lg" *ngIf="!account.isDeleted" (click)="lockAccount(account)">
+    <i class="uil uil-lock-alt"></i>
+  </span>
+
+              <span class="unlock clickable flex items-center justify-center w-8 h-8 bg-green-600 text-white rounded-full p-2 transition-transform transform hover:scale-105 hover:bg-green-700 shadow hover:shadow-lg" *ngIf="account.isDeleted" (click)="lockAccount(account)">
+    <i class="uil uil-lock-open-alt"></i>
+  </span>
+
+              <span class="remove clickable flex items-center justify-center w-8 h-8 bg-red-600 text-white rounded-full p-2 transition-transform transform hover:scale-105 hover:bg-red-700 shadow hover:shadow-lg" (click)="removeAccount(account.id)">
+    <i class="uil uil-trash-alt"></i>
+  </span>
+            </td>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <pagination-controls previousLabel="" nextLabel="" [autoHide]="true" [responsive]="true" (pageChange)="pageIndex = $event" class="paginator">
+      </pagination-controls>
     </div>
+  </div>
 </div>

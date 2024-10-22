@@ -13,10 +13,9 @@ nav {
 
     .navigation {
         position: fixed;
-        width: 15rem;
+        width: 12rem;
         height: 100%;
-        background-color: var(--color-primary);
-        border-left: 10px solid var(--color-primary);
+        background-color: #171717;
         transition: 0.5s;
         overflow: hidden;
 
@@ -51,38 +50,7 @@ nav {
                     margin-top: 5rem;
                 }
 
-                &:hover,
-                &.selected {
-                    background-color: var(--color-white);
 
-                    a {
-                        color: var(--color-primary);
-
-                        &::before {
-                            content: '';
-                            position: absolute;
-                            right: 0;
-                            top: -50px;
-                            width: 50px;
-                            height: 50px;
-                            background: transparent;
-                            border-radius: 50%;
-                            box-shadow: 35px 35px 0 10px var(--color-white);
-                        }
-
-                        &::after {
-                            content: '';
-                            position: absolute;
-                            right: 0;
-                            bottom: -50px;
-                            width: 50px;
-                            height: 50px;
-                            background: transparent;
-                            border-radius: 50%;
-                            box-shadow: 35px -35px 0 10px var(--color-white);
-                        }
-                    }
-                }
 
                 a {
                     width: 100%;
@@ -106,23 +74,4 @@ nav {
     }
 }
 
-@media screen and (max-width:992px) {
-    body {
-        margin-left: 0;
 
-        &.active {
-            margin-left: 15rem;
-        }
-    }
-
-    nav {
-        .navigation {
-            left: -15rem;
-
-            &.active {
-                left: 0;
-                width: 15rem;
-            }
-        }
-    }
-}

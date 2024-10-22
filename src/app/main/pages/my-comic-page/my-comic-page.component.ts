@@ -90,13 +90,13 @@ export class MyComicPageComponent implements OnInit {
   removeComic(id: number): void {
     Swal.fire({
       icon: 'question',
-      title: 'Xóa',
-      text: `Bạn có chắc muốn xóa truyện có mã '${id}'?`,
+      title: 'Delete',
+      text: `Do you want delemte manga with '${id}'?`,
       showCancelButton: true,
       showConfirmButton: true,
       focusCancel: true,
-      confirmButtonText: 'Xóa',
-      cancelButtonText: 'Không',
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'No',
       confirmButtonColor: 'var(--color-primary)',
       cancelButtonColor: 'var(--color-danger)'
     }).then(async result => {
@@ -105,9 +105,9 @@ export class MyComicPageComponent implements OnInit {
         this.uploadService.deleteByPath(`${id}`).subscribe(
           data => {
             Swal.fire({
-              position: 'top-end',
+              position: 'center',
               icon: 'success',
-              title: 'Xóa thành công!',
+              title: 'Delete successfully',
               showConfirmButton: false,
               timer: 1000
             }).then(result => {
@@ -117,9 +117,9 @@ export class MyComicPageComponent implements OnInit {
           error => {
             console.log(error);
             Swal.fire({
-              position: 'top-end',
+              position: 'center',
               icon: 'error',
-              title: 'Có lỗi xảy ra!',
+              title: 'Something wrong',
               showConfirmButton: false,
               timer: 1500
             });
@@ -137,19 +137,19 @@ export class MyComicPageComponent implements OnInit {
 
     switch (comic.status.toString()) {
       case StatusType[StatusType.PENDING]: {
-        result = 'Chờ duyệt';
+        result = 'Pending';
         break;
       }
       case StatusType[StatusType.PUBLISH]: {
-        result = 'Duyệt';
+        result = 'publish';
         break;
       }
       case StatusType[StatusType.UNPUBLISH]: {
-        result = 'Ẩn';
+        result = 'unpublish';
         break;
       }
       case StatusType[StatusType.REJECTED]: {
-        result = 'Từ chối';
+        result = 'rejected';
         break;
       }
     }

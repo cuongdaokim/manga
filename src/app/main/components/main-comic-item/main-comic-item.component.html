@@ -7,12 +7,12 @@
       (click)="navigateToComicDetail()"
     >
 
-    <div class="absolute right-2 bottom-2 flex items-center space-x-1 bg-orange-600 p-1.5 rounded">
+    <div class="absolute right-2 bottom-2 flex items-center space-x-1 bg-orange-600 p-1.5 rounded font-bold">
       <i class="uil uil-eye text-white"></i>
       <span class="text-white">{{ comic.view }}</span>
     </div>
 
-    <div class="absolute top-2 right-2 flex items-center space-x-1 bg-gray-800/90 p-1 rounded">
+    <div class="absolute font-bold text-sm top-2 right-2 flex items-center space-x-1 bg-gray-800/90 p-1 rounded">
       <i class="uil uil-clock text-white"></i>
       <span class="text-white">{{ comic.getTimeDiff() }}</span>
     </div>

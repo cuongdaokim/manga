@@ -18,8 +18,8 @@ export class AdminAddAccountPageComponent implements OnInit {
   selectedRole: RoleType = RoleType.USER;
 
   roleOptions = [
-    { value: RoleType.ADMIN, text: 'Quản trị viên' },
-    { value: RoleType.USER, text: 'Người dùng' },
+    { value: RoleType.ADMIN, text: 'Admin' },
+    { value: RoleType.USER, text: 'User' },
   ];
 
   addForm: FormGroup = new FormGroup({
@@ -75,9 +75,9 @@ export class AdminAddAccountPageComponent implements OnInit {
   addAccount(): void {
     if (this.newAccount.pass !== this.retypePass) {
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'error',
-        title: 'Mật khẩu nhập lại không chính xác',
+        title: 'Password incorrect',
         showConfirmButton: false,
         timer: 1500
       });
@@ -88,9 +88,9 @@ export class AdminAddAccountPageComponent implements OnInit {
     this.userService.add(this.newAccount).subscribe(
       data => {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Thêm tài khoản thành công!',
+          title: 'Add account successfully',
           showConfirmButton: false,
           timer: 1000
         }).then(result => {
@@ -98,14 +98,14 @@ export class AdminAddAccountPageComponent implements OnInit {
         });
       },
       error => {
-        let message = 'Có lỗi xảy ra!';
+        let message = 'Something went wrong';
 
         if (error.status === 304) {
-          message = 'Email đã được sử dụng!';
+          message = 'Email already exist';
         }
 
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
           title: message,
           showConfirmButton: false,
@@ -118,9 +118,9 @@ export class AdminAddAccountPageComponent implements OnInit {
     this.userService.update(this.newAccount).subscribe(
       data => {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Cập nhật tài khoản thành công!',
+          title: 'Update account successfully',
           showConfirmButton: false,
           timer: 1000
         }).then(result => {
@@ -129,9 +129,9 @@ export class AdminAddAccountPageComponent implements OnInit {
       },
       error => {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
-          title: 'Có lỗi xảy ra!',
+          title: 'Something went wrong',
           showConfirmButton: false,
           timer: 1500
         });

@@ -33,8 +33,8 @@
         <span>{{ comic.view }}</span>
       </div>
 
-      <div class="flex items-center space-x-4 mb-4" [@slideInDownOnEnter]>
-        <div class="bg-rose-500 w-12 h-12 text-white flex items-center justify-center text-2xl rounded-full">
+      <div class="flex items-center space-x-2 mb-4" [@slideInDownOnEnter]>
+        <div class="bg-rose-500 w-10 h-10 text-white flex items-center justify-center rounded-full">
           <i class="uil uil-heart btn clickable like"></i>
           <span>{{ totalLike }}</span>
         </div>
@@ -45,11 +45,11 @@
       </div>
 
       <div class="flex items-center space-x-2">
-        <button class="bg-blue-700 " (click)="navigateToChapter(comic.chapters.at(-1)!.chapterIndex)"
+        <button class="bg-blue-600 px-4 py-2 text-white rounded-2xl font-bold" (click)="navigateToChapter(comic.chapters.at(-1)!.chapterIndex)"
                 [@slideInUpOnEnter]>
           Read from the Start
         </button>
-        <button class="bg-blue-700 " (click)="navigateToChapter(comic.chapters[0].chapterIndex)" [@slideInUpOnEnter]>
+        <button class="bg-blue-600 px-4 py-2 text-white rounded-2xl font-bold " (click)="navigateToChapter(comic.chapters[0].chapterIndex)" [@slideInUpOnEnter]>
           Read from the End
         </button>
       </div>
@@ -81,10 +81,10 @@
               <span>Total chapter: </span>
             </div>
 
-            <div c>
+            <div >
               <div class="flex items-center space-x-2" *ngFor="let chapter of listChapters">
-                <a class="left" (click)="navigateToChapter(chapter.chapterIndex)">{{ chapter.getChapterName() }}</a>
-                <span class="time">{{ chapter.getTimeDiff() }}</span>
+                <a class="left text-red-500 text-sm font-bold" (click)="navigateToChapter(chapter.chapterIndex)" >{{ chapter.getChapterName() }}</a>
+                <span class="time"> - {{ chapter.getTimeDiff() }}</span>
               </div>
             </div>
           </div>

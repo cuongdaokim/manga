@@ -1,14 +1,14 @@
-<div class="my-profile-page">
-    <div class="container">
-        <h2>Thông tin cá nhân</h2>
+<div class="my-profile-page my-12">
+    <div class="container mx-auto">
+        <h2 class="text-center font-bold text-3xl my-4">Account Information</h2>
         <div class="my-profile">
-            <div class="avatar-group">
-                <div class="avatar">
-                    <img [src]="user.getAvatar()" alt="">
+            <div class="avatar-group text-center">
+                <div class="">
+                    <img [src]="user.getAvatar()" alt="" class="w-28 h-28 rounded-2xl">
                 </div>
 
                 <label for="upload-image" class="editor clickable">
-                    <i class="uil uil-image-edit"></i>
+                    <i class="uil uil-image-edit "></i>
                     <input id="upload-image" type="file" accept="image/*" (change)="onImageSelected($event)" hidden />
                 </label>
             </div>
@@ -31,14 +31,14 @@
                     <span class="hightlight">{{user.email}}</span>
                 </div>
                 <div class="info">
-                    <span>Số truyện đã đăng</span>
+                    <span>Total Manga</span>
                     <span class="hightlight">{{comicCount}}</span>
                 </div>
             </div>
         </div>
-        <div class="button-group" *ngIf="isEdit || avatarImage">
-            <button class="btn-cancel" (click)="cancelEdit()">Hủy</button>
-            <button class="btn-save" (click)="updateUserInfo()">Lưu</button>
-        </div>
+      <div class="flex space-x-4 mt-6 justify-center" *ngIf="isEdit || avatarImage">
+        <button class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400" (click)="cancelEdit()">Cancel</button>
+        <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" (click)="updateUserInfo()">Save</button>
+      </div>
     </div>
 </div>

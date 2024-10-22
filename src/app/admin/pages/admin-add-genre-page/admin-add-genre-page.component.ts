@@ -55,9 +55,9 @@ export class AdminAddGenrePageComponent implements OnInit {
     this.genreService.add(this.newGenre).subscribe(
       data => {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Thêm thể loại thành công!',
+          title: 'Add genre successfully',
           showConfirmButton: false,
           timer: 1000
         }).then(result => {
@@ -65,14 +65,14 @@ export class AdminAddGenrePageComponent implements OnInit {
         });
       },
       error => {
-        let message = 'Có lỗi xảy ra!';
+        let message = 'Something went wrong';
 
         if (error.status === 304) {
-          message = 'Genre đã tồn tại!';
+          message = 'Genre already exist';
         }
 
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
           title: message,
           showConfirmButton: false,
@@ -85,9 +85,9 @@ export class AdminAddGenrePageComponent implements OnInit {
     this.genreService.update(this.newGenre).subscribe(
       data => {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Cập nhật thể loại thành công!',
+          title: 'Update genre successfully',
           showConfirmButton: false,
           timer: 1000
         }).then(result => {
@@ -96,9 +96,9 @@ export class AdminAddGenrePageComponent implements OnInit {
       },
       error => {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
-          title: 'Có lỗi xảy ra!',
+          title: 'Something went wrong',
           showConfirmButton: false,
           timer: 1500
         });

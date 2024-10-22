@@ -4,10 +4,10 @@
   <div class="text-center">
     <div class="" (click)="navigateToComicDetail()">{{ comic.title }}</div>
     <div class="text-sm text-gray-800" (click)="navigateToChapter(comic.continueChapterIndex!)">
-      Continue reading chapter {{ comic.continueChapterIndex }}
+      Continue reading chapter <span class="text-rose-500 font-bold">{{ comic.continueChapterIndex }}</span>
     </div>
 
-    <button class="w-full justify-center bg-orange-600 px-2 py-1 flex items-center my-2 " (click)="deleteItem()">
+    <button class="w-full justify-center bg-rose-600 font-bold text-white px-2 py-1 flex items-center my-2 rounded-xl " (click)="deleteItem()">
       <i class="uil uil-times-circle mr-2"></i>
       <span class="text-sm">Delete</span>
     </button>

@@ -1,73 +1,61 @@
-<div class="my-comic-page">
-    <div class="container">
-        <h2>Manga đã đăng</h2>
-
-        <div class="topbar">
-            <div class="search">
-                <form (submit)="search()">
-                    <input type="text" placeholder="Tìm kiếm..." [(ngModel)]="searchStr"
-                        [ngModelOptions]="{standalone: true}" (ngModelChange)="offSearch()">
-                    <i class="uil uil-search"></i>
-                </form>
-            </div>
-        </div>
-
-        <div class="details">
-            <div class="wrapper">
-                <div class="list-comics">
-                    <div class="cardHeader">
-                        <h2>Danh sách truyện</h2>
-                        <a class="btn clickable" (click)="addComic()">
-                            <i class="uil uil-plus-circle"></i>
-                            Thêm mới
-                        </a>
-                    </div>
-                    <table (mouseleave)="onTableMouseLeave()">
-                        <thead>
-                            <tr>
-                                <td>Mã truyện</td>
-                                <td>Tên truyện</td>
-                                <td>Author</td>
-                                <td>Cập nhật</td>
-                                <td>Trạng thái</td>
-                                <td></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let comic of listComics | paginate: { itemsPerPage: 8, currentPage: pageIndex }"
-                                (mouseenter)="onRowDataHover(comic)">
-                                <td>{{comic.id}}</td>
-                                <td>{{comic.title}}</td>
-                                <td>{{comic.author?.name}}</td>
-                                <td>{{getComicUpdatedTimeDiff(comic.updatedTime)}}</td>
-                                <td><span class="status" [ngClass]="comic.statusClass">{{comic.statusString}}</span>
-                                </td>
-                                <td>
-                                    <span class="edit clickable" (click)="editComic(comic.id)">
+<div class=" container mx-auto my-12 my-comic-page">
+  <div class="container">
+    <div class="details">
+      <div class="wrapper">
+        <div class="list-comics">
+          <div class="cardHeader">
+            <h2 class="text-2xl">Manga List</h2>
+            <a class="btn clickable" (click)="addComic()">
+              <i class="uil uil-plus-circle"></i>
+              Add Manga
+            </a>
+          </div>
+          <table (mouseleave)="onTableMouseLeave()">
+            <thead>
+            <tr>
+              <td>MangaID</td>
+              <td>Title</td>
+              <td>Author</td>
+              <td>Updated At</td>
+              <td>Status</td>
+              <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let comic of listComics | paginate: { itemsPerPage: 8, currentPage: pageIndex }"
+                (mouseenter)="onRowDataHover(comic)">
+              <td>{{ comic.id }}</td>
+              <td>{{ comic.title }}</td>
+              <td>{{ comic.author?.name }}</td>
+              <td>{{ getComicUpdatedTimeDiff(comic.updatedTime) }}</td>
+              <td><span class="status" [ngClass]="comic.statusClass">{{ comic.statusString }}</span>
+              </td>
+              <td>
+                                    <span class="edit clickable text-white" (click)="editComic(comic.id)">
                                         <i class="uil uil-edit"></i>
                                     </span>
-                                    <span class="remove clickable" (click)="removeComic(comic.id)">
+                <span class="remove clickable text-white" (click)="removeComic(comic.id)">
                                         <i class=" uil uil-trash-alt"></i>
                                     </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <pagination-controls previousLabel="" nextLabel="" [autoHide]="true" [responsive]="true"
-                    (pageChange)="pageIndex = $event" class="paginator">
-                </pagination-controls>
-            </div>
-
-            <div class="preview">
-                <div class="cover" hidden>
-                    <img src="" alt="">
-                </div>
-                <div class="placeholder">
-                    <div>Bìa truyện</div>
-                </div>
-            </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
+
+        <pagination-controls previousLabel="" nextLabel="" [autoHide]="true" [responsive]="true"
+                             (pageChange)="pageIndex = $event" class="paginator">
+        </pagination-controls>
+      </div>
+
+      <div class="preview">
+        <div class="cover" hidden>
+          <img src="" alt="">
+        </div>
+        <div class="placeholder">
+          <div>Cover Art</div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

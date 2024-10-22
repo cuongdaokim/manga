@@ -48,9 +48,9 @@ export class LoginPageComponent implements OnInit {
         localStorage.setItem('authorizeToken', data.id + '');
 
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Login thành công!',
+          title: 'Login successfully',
           showConfirmButton: false,
           timer: 1500
         }).then(result => {
@@ -61,17 +61,17 @@ export class LoginPageComponent implements OnInit {
       error => {
         if (error.status == 404) {
           Swal.fire({
-            position: 'top-end',
+            position: 'center',
             icon: 'error',
-            title: 'Email hoặc mật khẩu không đúng!',
+            title: 'Email or password wrong',
             showConfirmButton: false,
             timer: 1500
           });
         } else if (error.status == 406) {
           Swal.fire({
-            position: 'top-end',
+            position: 'center',
             icon: 'error',
-            title: 'Account đã bị khóa!',
+            title: 'Account has been locked',
             showConfirmButton: false,
             timer: 1500
           });

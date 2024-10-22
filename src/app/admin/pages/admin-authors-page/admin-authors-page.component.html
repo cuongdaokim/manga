@@ -1,32 +1,24 @@
-<div class="admin-authors-page">
-    <div class="topbar">
-        <div class="search">
-            <form (submit)="search()">
-                <input type="text" placeholder="Tìm kiếm..." [(ngModel)]="searchStr"
-                    [ngModelOptions]="{standalone: true}" (keyup)="offSearch()">
-                <i class="uil uil-search"></i>
-            </form>
-        </div>
-    </div>
+<div class="admin-authors-page container mx-auto w-2/3">
+
 
     <div class="title">
-        <h2>Quản lý tác giả</h2>
+        <h2 class="text-3xl font-bold my-6">Author</h2>
     </div>
 
     <div class="details">
         <div class="list-authors">
             <div class="cardHeader">
-                <h2>Danh sách tác giả</h2>
+                <h2>Author List</h2>
                 <a class="btn clickable" (click)="addAuthor()">
                     <i class="uil uil-plus-circle"></i>
-                    Thêm mới
+                    Add new
                 </a>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <td>Mã tác giả</td>
-                        <td>Tên tác giả</td>
+                        <td>AuthorID</td>
+                        <td>Name</td>
                         <td></td>
                     </tr>
                 </thead>

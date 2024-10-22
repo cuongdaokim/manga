@@ -51,16 +51,16 @@ export class AdminAccountsPageComponent implements OnInit {
   }
 
   lockAccount(account: UserModel): void {
-    let choice = account.isDeleted ? 'Mở khóa' : 'Khóa';
+    let choice = account.isDeleted ? 'Unlock' : 'Lock';
     Swal.fire({
       icon: 'question',
       title: choice,
-      text: `Bạn có chắc muốn ${choice.toLowerCase()} tài khoản có mã '${account.id}'?`,
+      text: `Do you want ${choice.toLowerCase()} account has '${account.id}'?`,
       showCancelButton: true,
       showConfirmButton: true,
       focusCancel: true,
       confirmButtonText: choice,
-      cancelButtonText: 'Không',
+      cancelButtonText: 'No',
       confirmButtonColor: 'var(--color-primary)',
       cancelButtonColor: 'var(--color-danger)'
     }).then(result => {
@@ -74,13 +74,13 @@ export class AdminAccountsPageComponent implements OnInit {
   removeAccount(id: number): void {
     Swal.fire({
       icon: 'question',
-      title: 'Xóa',
-      text: `Bạn có chắc muốn xóa tài khoản có mã '${id}'?`,
+      title: 'Delete',
+      text: `Du you want Delete account with '${id}'?`,
       showCancelButton: true,
       showConfirmButton: true,
       focusCancel: true,
-      confirmButtonText: 'Xóa',
-      cancelButtonText: 'Không',
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'No',
       confirmButtonColor: 'var(--color-primary)',
       cancelButtonColor: 'var(--color-danger)'
     }).then(result => {
@@ -88,9 +88,9 @@ export class AdminAccountsPageComponent implements OnInit {
         this.userService.delete(id).subscribe(
           data => {
             Swal.fire({
-              position: 'top-end',
+              position: 'center',
               icon: 'success',
-              title: 'Xóa thành công!',
+              title: 'Delete successfully',
               showConfirmButton: false,
               timer: 1000
             }).then(result => {
@@ -100,9 +100,9 @@ export class AdminAccountsPageComponent implements OnInit {
           error => {
             console.log(error);
             Swal.fire({
-              position: 'top-end',
+              position: 'center',
               icon: 'error',
-              title: 'Có lỗi xảy ra!',
+              title: 'Something went wrong',
               showConfirmButton: false,
               timer: 1500
             });

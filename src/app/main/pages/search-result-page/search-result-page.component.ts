@@ -10,7 +10,6 @@ import {
   fadeInOnEnterAnimation,
   fadeInRightOnEnterAnimation,
   fadeOutOnLeaveAnimation,
-  flipOnEnterAnimation
 } from "angular-animations";
 
 @Component({

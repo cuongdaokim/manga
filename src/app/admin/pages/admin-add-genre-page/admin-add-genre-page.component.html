@@ -1,26 +1,33 @@
-<div class="admin-add-genre-page">
-    <div class="container">
-        <div class="header">
-            <h2>{{editId ? 'Cập nhật ' : 'Thêm '}} thể loại</h2>
-        </div>
-
-        <div class="wrapper">
-            <form class="input-fields" [formGroup]="addForm">
-                <div>
-                    <label for="name">Tên thể loại</label>
-                    <input id="name" type="text" maxlength="255" [(ngModel)]="newGenre.name" formControlName="name">
-                    <div *ngIf="name!.invalid && (name!.dirty || name!.touched)" class="alert alert-danger">
-                        <div *ngIf="name!.errors?.['required']">
-                            Vui lòng nhập tên thể loại
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <div class="button-groups">
-            <button class="btn-back" (click)="goBack()">Back</button>
-            <button class="btn-add" (click)="postGenre()">{{editId ? 'Cập nhật ' : 'Thêm '}}</button>
-        </div>
+<div class=" p-6  min-h-screen flex items-center justify-center container mx-auto">
+  <div class="  bg-white rounded-lg shadow-md p-6">
+    <div class="header text-center mb-6">
+      <h2 class="text-2xl font-bold text-gray-800">{{ editId ? 'Update ' : 'Add ' }}Genre</h2>
     </div>
+
+    <div class="">
+      <form [formGroup]="addForm" class="space-y-4">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+          <input id="name" type="text" maxlength="255" [(ngModel)]="newGenre.name" formControlName="name"
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"/>
+          <div *ngIf="name!.invalid && (name!.dirty || name!.touched)" class="text-red-600 text-sm mt-1">
+            <div *ngIf="name!.errors?.['required']">
+              Required genre
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class=" flex justify-center items-center space-x-2 mt-6">
+      <button class="btn-back bg-gray-300 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded"
+              (click)="goBack()">
+        Back
+      </button>
+      <button class="btn-add bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+              (click)="postGenre()">
+        {{ editId ? 'Update ' : 'Add ' }}
+      </button>
+    </div>
+  </div>
 </div>

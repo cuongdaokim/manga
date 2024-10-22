@@ -1,60 +1,60 @@
-<div class="add-chapter-page">
-    <div class="container">
-        <div class="header">
-            <h2>{{newChapter.id == 0 ? 'Thêm ': 'Cập nhật '}}chương truyện</h2>
-        </div>
+<div class="add-chapter-page container mx-auto p-6 min-h-screen flex flex-col items-center">
+  <div class="w-full max-w-2xl bg-white shadow-md rounded-lg p-6 mb-6">
+    <h2 class="text-3xl font-bold text-center mb-6">{{ newChapter.id == 0 ? 'Add ' : 'Update ' }} Chapter</h2>
 
-        <div class="wrapper">
-            <form class="input-fields" [formGroup]="addForm">
-                <div>
-                    <label for="name">Tên chương (nếu có)</label>
-                    <input id="name" type="text" maxlength="255" [(ngModel)]="newChapter.name" formControlName="name">
-                </div>
-                <div>
-                    <label for="index">Chương số</label>
-                    <input id="index" type="number" min="0" maxlength="11" [(ngModel)]="newChapter.chapterIndex"
-                        formControlName="index">
-                </div>
-            </form>
+    <form [formGroup]="addForm" class="space-y-4">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Chapter Title</label>
+        <input id="name" type="text" maxlength="255" [(ngModel)]="newChapter.name" formControlName="name"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-600 focus:border-blue-500 p-2"/>
+      </div>
+      <div>
+        <label for="index" class="block text-sm font-medium text-gray-700">Chapter Number</label>
+        <input id="index" type="number" min="0" maxlength="11" [(ngModel)]="newChapter.chapterIndex" formControlName="index"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-600 focus:border-blue-500 p-2"/>
+      </div>
+    </form>
 
-            <div class="add-content-group">
-                <div class="header">
-                    <i class="uil uil-list-ul"></i>
-                    <span> DANH SÁCH CHƯƠNG</span>
-                </div>
+    <div class="add-content-group chapter-list bg-gray-50 rounded-lg shadow p-4 mt-4">
+      <div class="flex items-center border-b-2 border-blue-500 pb-2 mb-2">
+        <i class="uil uil-list-ul text-blue-600"></i>
+        <span class="text-lg font-semibold">Chapter List</span>
+      </div>
 
-                <div class="contents"></div>
+      <div class="contents flex flex-col gap-2"></div>
 
-                <label class="add-images clickable" for="upload-images">
-                    <i class="uil uil-image-plus"></i>
-                    Thêm ảnh
-                </label>
-                <input id="upload-images" type="file" accept="image/*" (change)="onImageSelected($event)" multiple
-                    hidden />
-            </div>
-        </div>
-
-        <div class="button-groups">
-            <button class="btn-back" (click)="goBack()">Back</button>
-            <button class="btn-add" (click)="postChapter()">{{newChapter.id == 0 ? 'Thêm ': 'Cập nhật '}}</button>
-        </div>
+      <label for="upload-images"
+             class="add-images clickable cursor-pointer flex items-center justify-center h-12 border border-dashed border-gray-400 rounded-lg text-gray-600 text-lg hover:bg-gray-200 transition">
+        <i class="uil uil-image-plus text-2xl"></i>
+        Add Chapter
+      </label>
+      <input id="upload-images" type="file" accept="image/*" (change)="onImageSelected($event)" multiple hidden/>
     </div>
 
-    <div (click)="topFunction()" class="top-button">
-        <span class="arrow">
-            <i class="uil uil-angle-up"></i>
-        </span>
-        <span class="segunda">
-            <i class="uil uil-angle-up"></i>
-        </span>
+    <div class="flex items-center space-x-2 justify-center mt-6">
+      <button class="btn-back px-4 py-2 bg-gray-300 hover:bg-gray-400 text-white font-bold rounded" (click)="goBack()">
+        Back
+      </button>
+      <button class="btn-add px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded"
+              (click)="postChapter()">{{ newChapter.id == 0 ? 'Add ' : 'Update ' }}</button>
     </div>
+  </div>
 
-    <div class="move-group">
-        <button class="up" (click)="moveUp()"><i class="uil uil-angle-up"></i></button>
-        <button class="down" (click)="moveDown()"><i class="uil uil-angle-down"></i></button>
-    </div>
+  <div (click)="topFunction()"
+       class="top-button hidden md:block fixed bottom-5 right-5 z-50 text-5xl text-blue-600 cursor-pointer hover:text-blue-800 transition">
+    <i class="uil uil-angle-up"></i>
+  </div>
+
+  <div class="move-group absolute top-1/2 right-6 hidden md:flex flex-col gap-2">
+    <button class="up bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition" (click)="moveUp()">
+      <i class="uil uil-angle-up text-2xl"></i>
+    </button>
+    <button class="down bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition" (click)="moveDown()">
+      <i class="uil uil-angle-down text-2xl"></i>
+    </button>
+  </div>
 </div>
 
-<div class="spinner hidden">
-    <div class="loader"></div>
+<div class="spinner hidden fixed inset-0 flex items-center justify-center z-50">
+  <div class="loader border-8 border-t-transparent border-blue-600 rounded-full w-16 h-16 animate-spin"></div>
 </div>

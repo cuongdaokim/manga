@@ -1,12 +1,11 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
-import { UserModel } from 'src/app/models/user.model';
-import { ComicService } from 'src/app/services/comic.service';
-import { UploadService } from 'src/app/services/upload.service';
-import { UserService } from 'src/app/services/user.service';
+import {Component, ElementRef, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {lastValueFrom} from 'rxjs';
+import {UserModel} from 'src/app/models/user.model';
+import {ComicService} from 'src/app/services/comic.service';
+import {UploadService} from 'src/app/services/upload.service';
+import {UserService} from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
-import { MainComponent } from '../../main.component';
 
 @Component({
   selector: 'app-my-profile-page',
@@ -26,7 +25,8 @@ export class MyProfilePageComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private comicService: ComicService,
-    private uploadService: UploadService) { }
+    private uploadService: UploadService) {
+  }
 
   ngOnInit(): void {
     let userId = localStorage.getItem('authorizeToken');
@@ -49,8 +49,8 @@ export class MyProfilePageComponent implements OnInit {
     if (this.avatarImage) {
       if ((this.avatarImage.size / 1024 / 1024) > 2) {
         Swal.fire(
-          'Kích thước quá lớn!',
-          'Kích thước ảnh tối đa cho phép là 2MB',
+          'Image size too big',
+          'Max image size is 2MB',
           'error'
         );
 
@@ -100,7 +100,7 @@ export class MyProfilePageComponent implements OnInit {
     if (!this.draftUserName) {
       Swal.fire(
         'Lỗi!',
-        'Vui lòng nhập Username',
+        'Username required',
         'error'
       );
       return;
@@ -116,9 +116,10 @@ export class MyProfilePageComponent implements OnInit {
     }
 
     Swal.fire({
-      position: 'top-end',
+      position: 'center',
       icon: 'success',
-      title: 'Cập nhật thông tin thành công!',
+      title:
+        'Update information successfully',
       showConfirmButton: false,
       timer: 1500
     }).then(() => {

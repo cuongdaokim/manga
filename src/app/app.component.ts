@@ -14,5 +14,5 @@ export class AppComponent {
     })
   };
 
-  title = 'TruyenTranhWebApp-FE';
+  title = 'MangaNoob';
 }

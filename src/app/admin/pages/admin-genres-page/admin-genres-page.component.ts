@@ -53,13 +53,13 @@ export class AdminGenresPageComponent implements OnInit {
   removeGenre(id: number): void {
     Swal.fire({
       icon: 'question',
-      title: 'Xóa',
-      text: `Bạn có chắc muốn xóa thể loại có mã '${id}'?`,
+      title: 'Delete',
+      text: `Do you want delete genre with '${id}'?`,
       showCancelButton: true,
       showConfirmButton: true,
       focusCancel: true,
-      confirmButtonText: 'Xóa',
-      cancelButtonText: 'Không',
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'No',
       confirmButtonColor: 'var(--color-primary)',
       cancelButtonColor: 'var(--color-danger)'
     }).then(result => {
@@ -67,9 +67,9 @@ export class AdminGenresPageComponent implements OnInit {
         this.genreService.delete(id).subscribe(
           data => {
             Swal.fire({
-              position: 'top-end',
+              position: 'center',
               icon: 'success',
-              title: 'Xóa thành công!',
+              title: 'Delete successfully',
               showConfirmButton: false,
               timer: 1000
             }).then(result => {
@@ -79,10 +79,9 @@ export class AdminGenresPageComponent implements OnInit {
           error => {
             console.log(error);
             Swal.fire({
-              position: 'top-end',
+              position: 'center',
               icon: 'error',
-              title: 'Không thể xóa!',
-              text: 'Có thể đang có truyện thuộc thể loại này tồn tại',
+              title: 'Delete Fail',
               showConfirmButton: false,
               timer: 1500
             });

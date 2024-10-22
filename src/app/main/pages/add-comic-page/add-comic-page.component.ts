@@ -45,11 +45,11 @@ export class AddComicPageComponent implements OnInit {
     textField: 'name',
     singleSelection: false,
     allowSearchFilter: true,
-    selectAllText: 'Chọn tất cả',
-    unSelectAllText: 'Bỏ chọn tất cả',
-    searchPlaceholderText: 'Tìm kiếm',
-    noDataAvailablePlaceholderText: 'Không có thể loại',
-    noFilteredDataAvailablePlaceholderText: 'Không tìm thấy thể loại'
+    selectAllText: 'Select All',
+    unSelectAllText: 'Deselect all',
+    searchPlaceholderText: 'Find',
+    noDataAvailablePlaceholderText: 'No genre',
+    noFilteredDataAvailablePlaceholderText: 'No genre found'
   };
 
   constructor(
@@ -105,8 +105,8 @@ export class AddComicPageComponent implements OnInit {
     if (this.coverImage) {
       if ((this.coverImage.size / 1024 / 1024) > 2) {
         Swal.fire(
-          'Kích thước quá lớn!',
-          'Kích thước ảnh tối đa cho phép là 2MB',
+          'Image size too big',
+          'Max size is 2MB',
           'error'
         );
         return;
@@ -169,13 +169,13 @@ export class AddComicPageComponent implements OnInit {
   deleteChapter(chapter: ChapterModel): void {
     Swal.fire({
       icon: 'question',
-      title: 'Xóa',
-      text: `Bạn có chắc muốn xóa chương ${chapter.chapterIndex}?`,
+      title: 'Delete',
+      text: `Do u want to delete chapter ${chapter.chapterIndex}?`,
       showCancelButton: true,
       showConfirmButton: true,
       focusCancel: true,
-      confirmButtonText: 'Xóa',
-      cancelButtonText: 'Không',
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'No',
       confirmButtonColor: 'var(--color-primary)',
       cancelButtonColor: 'var(--color-danger)'
     }).then(result => {
@@ -199,9 +199,9 @@ export class AddComicPageComponent implements OnInit {
 
       this.chapterService.delete(chapter.id).subscribe(data => {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Xóa chương truyện thành công!',
+          title: 'Remove chapter successfully',
           showConfirmButton: false,
           timer: 1500
         });
@@ -212,9 +212,9 @@ export class AddComicPageComponent implements OnInit {
   async postComic(): Promise<void> {
     if (this.newComic.chapters.length == 0) {
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'error',
-        title: 'Vui lòng thêm ít nhất 1 chương!',
+        title: 'Need add at least 1 chapter',
         showConfirmButton: false,
         timer: 1500
       });
@@ -237,16 +237,15 @@ export class AddComicPageComponent implements OnInit {
   async addComic(): Promise<void> {
     if (!this.coverImage) {
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'error',
-        title: 'Vui lòng thêm bìa truyện!',
+        title: 'Required Cover Art',
         showConfirmButton: false,
         timer: 1500
       });
       return;
     }
     else {
-      this.toggleSpinner();
 
       this.newComic.status = StatusType.PENDING;
 
@@ -283,13 +282,12 @@ export class AddComicPageComponent implements OnInit {
         }
       }
 
-      this.toggleSpinner();
 
       this.uploadService.upload(this.coverImage, 'cover.jpg', this.newComic.id + '').subscribe(data => {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Thêm truyện thành công!',
+          title: 'Add manga successfully',
           showConfirmButton: false,
           timer: 1500
         }).then(result => {
@@ -300,7 +298,6 @@ export class AddComicPageComponent implements OnInit {
   }
 
   async updateComic(): Promise<void> {
-    this.toggleSpinner();
 
     this.newComic.author = await lastValueFrom(this.authorService.getByName(this.authorName));
 
@@ -316,14 +313,13 @@ export class AddComicPageComponent implements OnInit {
 
     await lastValueFrom(this.comicService.update(this.newComic));
 
-    this.toggleSpinner();
 
     if (this.coverImage) {
       this.uploadService.upload(this.coverImage, 'cover.jpg', this.newComic.id + '').subscribe(data => {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Cập nhật truyện với bìa thành công!',
+          title: 'Update Manga Successfully',
           showConfirmButton: false,
           timer: 1500
         }).then(result => {
@@ -333,9 +329,9 @@ export class AddComicPageComponent implements OnInit {
     }
     else {
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'success',
-        title: 'Cập nhật truyện thành công!',
+        title: 'Update Manga Successfully',
         showConfirmButton: false,
         timer: 1500
       }).then(result => {
@@ -344,10 +340,7 @@ export class AddComicPageComponent implements OnInit {
     }
   }
 
-  toggleSpinner(): void {
-    let spinner = this.elementRef.nativeElement.querySelector('.spinner') as HTMLElement;
-    spinner.classList.toggle('hidden');
-  }
+
 
   multiSelectRequired(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {

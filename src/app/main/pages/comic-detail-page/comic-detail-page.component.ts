@@ -34,6 +34,7 @@ export class ComicDetailPageComponent implements OnInit {
   totalDislike: number = 0;
   reviewedByUser?: ReviewModel;
   pageIndex: number = 1;
+  isEditingName = false;
 
   constructor(
     private router: Router,
@@ -41,6 +42,7 @@ export class ComicDetailPageComponent implements OnInit {
     private comicService: ComicService,
     private reviewService: ReviewService,
     private commentService: CommentService) { }
+
 
 
   ngOnInit(): void {
@@ -141,4 +143,8 @@ export class ComicDetailPageComponent implements OnInit {
   searchByGenre(id: number) {
     this.router.navigate([`/search/genre/${id}`]).then(() => window.location.reload());
   }
+
+
+
+
 }

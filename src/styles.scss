@@ -5,13 +5,12 @@
 @tailwind utilities;
 
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
 @import '../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 .ngx-pagination .current {
   padding: .1875rem .625rem !important;
-  background: orange !important;
+  background: rgb(234,88,12) !important;
   color: #fefefe !important;
   cursor: default !important;
   width: 40px !important;
@@ -22,6 +21,7 @@
   font-weight: 700 !important;
   font-size: 1rem !important;
   margin: 1rem 0 !important;
+  border-radius: 0.5rem !important;
 }
 
 .ngx-pagination {
@@ -38,8 +38,8 @@
   --color-white: hsl(252, 30%, var(--white-color-lightness));
   --color-light: hsl(252, 30%, var(--light-color-lightness));
   --color-gray: hsl(253, 4%, 47%);
-  --color-primary: hsl(var(--primary-color-hue), 75%, 60%);
-  --color-secondary: orange;
+  --color-primary: #0b70f3;
+  --color-secondary: #0b70f3;
   --color-success: hsl(120, 98%, 56%);
   --color-danger: hsl(0, 95%, 61%);
   --color-dark: hsl(252, 30%, var(--dark-color-lightness));
@@ -64,8 +64,8 @@
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  border: none;
-  font-family: 'Roboto', sans-serif, Arial, Helvetica;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
 }
 
 body {
@@ -91,14 +91,6 @@ a {
   }
 }
 
-button,
-.button {
-  background-color: var(--color-primary);
-  padding: 0.5rem var(--card-padding);
-  border-radius: var(--card-border-radius);
-  font-size: 1.2rem;
-  color: var(--color-white);
-}
 
 .text-muted {
   color: var(--color-gray);
@@ -187,6 +179,9 @@ button,
   display: none !important;
 }
 
+[class^=uil-]:before, [class*=" uil-"]:before {
+  color: white;
+}
 
 
 

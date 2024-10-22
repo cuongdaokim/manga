@@ -97,8 +97,8 @@ export class AdminAddChapterPageComponent implements OnInit {
       if ((this.listImages.length == 0 && this.newChapter.id == 0)
         || (this.newChapter.id != 0 && this.newChapter.contents.length == 0)) {
         Swal.fire(
-          `Không hợp lệ!`,
-          `Vui lòng thêm nội dung cho chương này`,
+          `Error!`,
+          `Required description `,
           'error'
         );
         return;
@@ -118,7 +118,7 @@ export class AdminAddChapterPageComponent implements OnInit {
         this.toggleSpinner();
 
         this.newChapter.contentImages = this.listImages;
-        let prefix = this.newChapter.id == 0 ? 'Thêm' : 'Cập nhật';
+        let prefix = this.newChapter.id == 0 ? 'Add' : 'Cập nhật';
 
         let chapter = this.newChapter;
 
@@ -170,9 +170,9 @@ export class AdminAddChapterPageComponent implements OnInit {
         this.toggleSpinner();
 
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: `${prefix} chương truyện thành công!`,
+          title: `${prefix} chapter successfully`,
           showConfirmButton: false,
           timer: 1000
         }).then(result => {
@@ -181,8 +181,8 @@ export class AdminAddChapterPageComponent implements OnInit {
       }
       else {
         Swal.fire(
-          `Không hợp lệ`,
-          `Chương ${duplicateIndex} đã tồn tại!`,
+          `Error`,
+          `Chapter ${duplicateIndex} already exist`,
           'error'
         );
       }
@@ -206,8 +206,8 @@ export class AdminAddChapterPageComponent implements OnInit {
         this.listImages.splice(this.listImages.indexOf(image), 1);
 
         Swal.fire(
-          'Có ảnh có kích thước quá lớn!',
-          'Kích thước ảnh tối đa cho phép là 2MB',
+          'Image size too big',
+          'Max Image size is 2MB ',
           'error'
         );
       }
@@ -243,7 +243,6 @@ export class AdminAddChapterPageComponent implements OnInit {
 
     const img = document.createElement('img');
     img.addEventListener('mouseenter', () => {
-      img.style.border = '3px solid var(--color-primary)';
       // moveGroup.style.display = 'flex';
       // container.appendChild(moveGroup);
       // this.selectedImage = image;
@@ -289,7 +288,7 @@ export class AdminAddChapterPageComponent implements OnInit {
 
     const img = document.createElement('img');
     img.addEventListener('mouseenter', () => {
-      img.style.border = '3px solid var(--color-primary)';
+
       // moveGroup.style.display = 'flex';
       // container.appendChild(moveGroup);
     });

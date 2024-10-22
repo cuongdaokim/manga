@@ -59,13 +59,13 @@ export class MainComponent implements OnInit {
   onLogout(): void {
     Swal.fire({
       icon: 'question',
-      title: 'Đăng xuất',
-      text: 'Bạn có chắc muốn đăng xuất?',
+      title: 'Logout',
+      text: 'Do you want logout?',
       showCancelButton: true,
       showConfirmButton: true,
       focusCancel: true,
-      confirmButtonText: 'Có, đăng xuất',
-      cancelButtonText: 'Không, ở lại',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
       confirmButtonColor: 'var(--color-primary)',
       cancelButtonColor: 'var(--color-danger)'
     }).then(result => {

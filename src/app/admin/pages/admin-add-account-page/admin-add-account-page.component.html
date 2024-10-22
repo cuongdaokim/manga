@@ -1,73 +1,70 @@
-<div class="admin-add-account-page">
-    <div class="container">
-        <div class="header">
-            <h2>{{editId ? 'Cập nhật ' : 'Thêm '}}người dùng</h2>
-        </div>
-
-        <div class="wrapper">
-            <form class="input-fields" [formGroup]="addForm">
-                <div>
-                    <label for="account-add-name">Username</label>
-                    <input id="account-add-name" type="text" maxlength="24" [(ngModel)]="newAccount.name"
-                        formControlName="name" [readonly]="editId">
-                    <div *ngIf="name!.invalid && (name!.dirty || name!.touched)" class="alert alert-danger">
-                        <div *ngIf="name!.errors?.['required']">
-                            Vui lòng nhập Username
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="account-add-email">Email</label>
-                    <input id="account-add-email" type="email" maxlength="320" [(ngModel)]="newAccount.email"
-                        formControlName="email" [readonly]="editId">
-                    <div *ngIf="email!.invalid && (email!.dirty || email!.touched)" class="alert alert-danger">
-                        <div *ngIf="email!.errors?.['required']">
-                            Vui lòng nhập email
-                        </div>
-                        <div *ngIf="email!.errors?.['email']">
-                            Email không hợp lệ
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="account-add-pass">Mật khẩu</label>
-                    <input id="account-add-pass" type="password" maxlength="128" [(ngModel)]="newAccount.pass"
-                        formControlName="pass" [readonly]="editId">
-                    <div *ngIf="pass!.invalid && (pass!.dirty || pass!.touched)" class="alert alert-danger">
-                        <div *ngIf="pass!.errors?.['required']">
-                            Vui lòng nhập mật khẩu
-                        </div>
-                    </div>
-                </div>
-
-                <div [hidden]="editId">
-                    <label for="account-add-repass">Nhập lại mật khẩu</label>
-                    <input id="account-add-repass" type="password" maxlength="128" [(ngModel)]="retypePass"
-                        formControlName="repass">
-                    <div *ngIf="repass!.invalid && (repass!.dirty || repass!.touched)" class="alert alert-danger">
-                        <div *ngIf="repass!.errors?.['required']">
-                            Vui lòng nhập lại mật khẩu
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="account-add-role">Cấp quyền</label>
-                    <select id="account-add-role" formControlName="role" [(ngModel)]="selectedRole"
-                        [value]="selectedRole">
-                        <option *ngFor=" let option of roleOptions" [value]="option.value">
-                            {{option.text}}
-                        </option>
-                    </select>
-                </div>
-            </form>
-        </div>
-
-        <div class="button-groups">
-            <button class="btn-back" (click)="goBack()">Back</button>
-            <button class="btn-add" (click)="postAccount()">{{editId ? 'Cập nhật ' : 'Thêm '}}</button>
-        </div>
+<div class="admin-add-account-page bg-gray-100 w-full min-h-screen py-8">
+  <div class="container mx-auto max-w-lg bg-white rounded-lg shadow-lg p-6">
+    <div class="header mb-6">
+      <h2 class="text-2xl font-semibold text-gray-800 text-center">{{ editId ? 'Update ' : 'Add ' }} User</h2>
     </div>
+
+    <div class="">
+      <form class=" space-y-2" [formGroup]="addForm">
+        <div>
+          <label for="account-add-name" class="block text-sm font-medium text-gray-700">Username</label>
+          <input id="account-add-name" type="text" maxlength="24" [(ngModel)]="newAccount.name"
+                 formControlName="name" [readonly]="editId"
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+          <div *ngIf="name!.invalid && (name!.dirty || name!.touched)" class="text-red-600 mt-1 text-sm">
+            <div *ngIf="name!.errors?.['required']">Required User</div>
+          </div>
+        </div>
+
+        <div>
+          <label for="account-add-email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input id="account-add-email" type="email" maxlength="320" [(ngModel)]="newAccount.email"
+                 formControlName="email" [readonly]="editId"
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+          <div *ngIf="email!.invalid && (email!.dirty || email!.touched)" class="text-red-600 mt-1 text-sm">
+            <div *ngIf="email!.errors?.['required']">Required email</div>
+            <div *ngIf="email!.errors?.['email']">Email Error</div>
+          </div>
+        </div>
+
+        <div>
+          <label for="account-add-pass" class="block text-sm font-medium text-gray-700">Password</label>
+          <input id="account-add-pass" type="password" maxlength="128" [(ngModel)]="newAccount.pass"
+                 formControlName="pass" [readonly]="editId"
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+          <div *ngIf="pass!.invalid && (pass!.dirty || pass!.touched)" class="text-red-600 mt-1 text-sm">
+            <div *ngIf="pass!.errors?.['required']">Required password</div>
+          </div>
+        </div>
+
+        <div [hidden]="editId">
+          <label for="account-add-repass" class="block text-sm font-medium text-gray-700">Enter password</label>
+          <input id="account-add-repass" type="password" maxlength="128" [(ngModel)]="retypePass"
+                 formControlName="repass"
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+          <div *ngIf="repass!.invalid && (repass!.dirty || repass!.touched)" class="text-red-600 mt-1 text-sm">
+            <div *ngIf="repass!.errors?.['required']">Required password</div>
+          </div>
+        </div>
+
+        <div>
+          <label for="account-add-role" class="block text-sm font-medium text-gray-700">Role</label>
+          <select id="account-add-role" formControlName="role" [(ngModel)]="selectedRole"
+                  [value]="selectedRole"
+                  class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+            <option *ngFor="let option of roleOptions" [value]="option.value">
+              {{ option.text }}
+            </option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <div class="button-groups mt-8 flex justify-between">
+      <button class="bg-gray-400 text-white py-2 px-4 rounded-md hover:bg-gray-500 focus:outline-none"
+              (click)="goBack()">Back</button>
+      <button class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none"
+              (click)="postAccount()">{{ editId ? 'Update ' : 'Add ' }}</button>
+    </div>
+  </div>
 </div>

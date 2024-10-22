@@ -42,9 +42,9 @@ export class SignupPageComponent implements OnInit {
 
     if (this.newUser.pass !== this.retypePass) {
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'error',
-        title: 'Mật khẩu nhập lại không chính xác',
+        title: 'Password incorrect',
         showConfirmButton: false,
         timer: 1500
       });
@@ -55,9 +55,9 @@ export class SignupPageComponent implements OnInit {
     this.userService.add(this.newUser).subscribe(
       data => {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Thêm tài khoản thành công!',
+          title: 'Register successfully',
           showConfirmButton: false,
           timer: 1000
         }).then(result => {
@@ -65,14 +65,14 @@ export class SignupPageComponent implements OnInit {
         });
       },
       error => {
-        let message = 'Có lỗi xảy ra!';
+        let message = 'Something went wrong';
 
         if (error.status === 304) {
-          message = 'Email đã được sử dụng!';
+          message = 'Email already exists';
         }
 
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
           title: message,
           showConfirmButton: false,

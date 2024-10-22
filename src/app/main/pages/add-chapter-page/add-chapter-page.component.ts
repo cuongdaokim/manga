@@ -105,8 +105,8 @@ export class AddChapterPageComponent implements OnInit {
       if ((this.listImages.length == 0 && this.newChapter.id == 0)
         || (this.newChapter.id != 0 && this.newChapter.contents.length == 0)) {
         Swal.fire(
-          `Không hợp lệ!`,
-          `Vui lòng thêm nội dung cho chương này`,
+          `Error!`,
+          `Required image`,
           'error'
         );
         return;
@@ -126,7 +126,7 @@ export class AddChapterPageComponent implements OnInit {
         this.toggleSpinner();
 
         this.newChapter.contentImages = this.listImages;
-        let prefix = this.newChapter.id == 0 ? 'Thêm' : 'Cập nhật';
+        let prefix = this.newChapter.id == 0 ? 'Add' : 'Cập nhật';
 
         let chapter = this.newChapter;
 
@@ -178,9 +178,9 @@ export class AddChapterPageComponent implements OnInit {
         this.toggleSpinner();
 
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: `${prefix} chương truyện thành công!`,
+          title: `${prefix} chapter successfully`,
           showConfirmButton: false,
           timer: 1000
         }).then(result => {
@@ -189,8 +189,8 @@ export class AddChapterPageComponent implements OnInit {
       }
       else {
         Swal.fire(
-          `Không hợp lệ`,
-          `Chương ${duplicateIndex} đã tồn tại!`,
+          `Error`,
+          `Chapter ${duplicateIndex} already exist`,
           'error'
         );
       }
@@ -214,8 +214,8 @@ export class AddChapterPageComponent implements OnInit {
         this.listImages.splice(this.listImages.indexOf(image), 1);
 
         Swal.fire(
-          'Có ảnh có kích thước quá lớn!',
-          'Kích thước ảnh tối đa cho phép là 2MB',
+          'Image size too big',
+          'Max image size is 2MB',
           'error'
         );
       }
@@ -235,11 +235,13 @@ export class AddChapterPageComponent implements OnInit {
     container.style.position = 'relative';
 
     const removeBtn = document.createElement('span');
-    removeBtn.innerHTML = '<i class="uil uil-multiply"></i>';
+    removeBtn.className = 'bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 transition flex items-center justify-center w-10 h-10' ;
+    removeBtn.innerHTML = '<i class="uil uil-multiply text-white"></i>';
+
     removeBtn.style.position = 'absolute';
     removeBtn.style.top = '0.5rem';
     removeBtn.style.right = '0.5rem';
-    removeBtn.style.fontSize = '2rem';
+    removeBtn.style.fontSize = '1rem';
     removeBtn.style.color = 'var(--color-danger)';
     removeBtn.style.fontWeight = '500';
     removeBtn.style.cursor = 'pointer';
@@ -251,7 +253,7 @@ export class AddChapterPageComponent implements OnInit {
 
     const img = document.createElement('img');
     img.addEventListener('mouseenter', () => {
-      img.style.border = '3px solid var(--color-primary)';
+
       // moveGroup.style.display = 'flex';
       // container.appendChild(moveGroup);
       // this.selectedImage = image;
@@ -280,7 +282,9 @@ export class AddChapterPageComponent implements OnInit {
     container.style.position = 'relative';
 
     const removeBtn = document.createElement('span');
-    removeBtn.innerHTML = '<i class="uil uil-multiply"></i>';
+    removeBtn.className = 'bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 transition flex items-center justify-center w-10 h-10' ;
+    removeBtn.innerHTML = '<i class="uil uil-multiply text-white"></i>';
+
     removeBtn.style.position = 'absolute';
     removeBtn.style.top = '0.5rem';
     removeBtn.style.right = '0.5rem';
@@ -297,7 +301,7 @@ export class AddChapterPageComponent implements OnInit {
 
     const img = document.createElement('img');
     img.addEventListener('mouseenter', () => {
-      img.style.border = '3px solid var(--color-primary)';
+
       // moveGroup.style.display = 'flex';
       // container.appendChild(moveGroup);
     });

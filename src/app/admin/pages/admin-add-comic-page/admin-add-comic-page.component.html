@@ -1,102 +1,107 @@
-<div class="admin-add-comic-page">
-    <div class="container">
-        <div class="header">
-            <h2>{{editId ? 'Cập nhật ' : 'Thêm '}}truyện</h2>
-        </div>
-
-        <div class="comic-group">
-            <form [formGroup]="addForm" class="input-fields">
-                <div>
-                    <label for="title">Tên truyện</label>
-                    <input id="title" type="text" maxlength="255" [(ngModel)]="newComic.title" formControlName="title">
-                    <div *ngIf="addForm.get('title')!.invalid && (addForm.get('title')!.dirty || addForm.get('title')!.touched)"
-                        class="alert alert-danger">
-                        <div *ngIf="addForm.get('title')!.errors?.['required']">
-                            Vui lòng nhập tên truyện
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <label for="author">Author</label>
-                    <input id="author" type="text" maxlength="255" [(ngModel)]="authorName" formControlName="author">
-                    <div *ngIf="addForm.get('author')!.invalid && (addForm.get('author')!.dirty || addForm.get('author')!.touched)"
-                        class="alert alert-danger">
-                        <div *ngIf="addForm.get('author')!.errors?.['required']">
-                            Vui lòng nhập tên tác giả
-                        </div>
-                    </div>
-                </div>
-                <div>
-<!--                    <label for="genres">Genre</label>-->
-                    <ng-multiselect-dropdown #genreMultiSelect formControlName="genres" class="genres-multiselect"
-                        [placeholder]="'Chọn thể loại'" [settings]="dropdownSettings" [data]="dropdownList"
-                        [(ngModel)]="selectedItems" (click)="onMultiSelectTouched()">
-                    </ng-multiselect-dropdown>
-                    <div *ngIf="addForm.get('genres')!.invalid && addForm.get('genres')!.touched"
-                        class="alert alert-danger">
-                        <div *ngIf="addForm.get('genres')!.errors?.['multiRequired']">
-                            Vui lòng chọn thể loại
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <label for="description">Mô tả</label>
-                    <textarea id="description" rows="5" maxlength="1000" [(ngModel)]="newComic.description"
-                        formControlName="description"></textarea>
-                </div>
-                <div>
-                    <label for="comic-status">Trạng thái</label>
-                    <select id="comic-status" formControlName="status" [(ngModel)]="selectedStatus"
-                        [value]="selectedStatus">
-                        <option *ngFor=" let option of comicStatusOptions" [value]="option.value">
-                            {{option.text}}
-                        </option>
-                    </select>
-                </div>
-            </form>
-
-            <label for="upload-image" class="upload-cover clickable">
-                <div class="cover-wrapper">
-                    <img class="cover">
-                </div>
-                <span class="placeholder">Thêm bìa truyện</span>
-            </label>
-            <input id="upload-image" type="file" accept="image/*" (change)="onImageSelected($event)" hidden />
-        </div>
-
-        <div class="chapter-group">
-            <div class="header">
-                <div>
-                    <i class="uil uil-list-ul"></i>
-                    <span> DANH SÁCH CHƯƠNG</span>
-                </div>
-                <a class="add-chapter clickable" (click)="navigateToAddChapter()">
-                    <i class="uil uil-plus-circle"></i>
-                    Thêm chương
-                </a>
-            </div>
-
-            <ul class="chapters" [hidden]="newComic.chapters.length == 0">
-                <li class="chapter-item" *ngFor="let chapter of newComic.chapters">
-                    <a class="left" (click)="navigateToAddChapter(chapter)">
-                        {{chapter.getChapterName()}}
-                    </a>
-                    <span class="remove clickable" (click)="deleteChapter(chapter)">
-                        <i class=" uil uil-trash-alt"></i>
-                    </span>
-                </li>
-            </ul>
-
-            <div class="no-chapter">Chưa có chương truyện nào</div>
-        </div>
-
-        <div class="button-groups">
-            <button class="btn-back" (click)="goBack()">Back</button>
-            <button class="btn-add" (click)="postComic()">{{editId ? 'Cập nhật ' : 'Thêm '}}</button>
-        </div>
+<div class="admin-add-comic-page flex flex-col items-center min-h-screen bg-gray-100">
+  <div class="container bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
+    <div class="header text-center mb-6">
+      <h2 class="font-bold text-3xl text-gray-800">{{ editId ? 'Update ' : 'Add ' }}Manga</h2>
     </div>
+
+    <div class="comic-group">
+      <form [formGroup]="addForm" class="space-y-6">
+        <div class="mb-4">
+          <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+          <input id="title" type="text" maxlength="255" [(ngModel)]="newComic.title" formControlName="title"
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"/>
+          <div *ngIf="addForm.get('title')!.invalid && (addForm.get('title')!.dirty || addForm.get('title')!.touched)"
+               class="text-red-600 text-sm mt-1">
+            <div *ngIf="addForm.get('title')!.errors?.['required']">Title is required</div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="author" class="block text-sm font-medium text-gray-700">Author</label>
+          <input id="author" type="text" maxlength="255" [(ngModel)]="authorName" formControlName="author"
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"/>
+          <div
+            *ngIf="addForm.get('author')!.invalid && (addForm.get('author')!.dirty || addForm.get('author')!.touched)"
+            class="text-red-600 text-sm mt-1">
+            <div *ngIf="addForm.get('author')!.errors?.['required']">Author is required</div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <ng-multiselect-dropdown #genreMultiSelect formControlName="genres" class="genres-multiselect"
+                                   [placeholder]="'Select genre'" [settings]="dropdownSettings" [data]="dropdownList"
+                                   [(ngModel)]="selectedItems" (click)="onMultiSelectTouched()">
+          </ng-multiselect-dropdown>
+          <div *ngIf="addForm.get('genres')!.invalid && addForm.get('genres')!.touched"
+               class="text-red-600 text-sm mt-1">
+            <div *ngIf="addForm.get('genres')!.errors?.['multiRequired']">Genre is required</div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+          <textarea id="description" rows="5" maxlength="1000" [(ngModel)]="newComic.description"
+                    formControlName="description"
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label for="comic-status" class="block text-sm font-medium text-gray-700">Status</label>
+          <select id="comic-status" formControlName="status" [(ngModel)]="selectedStatus" [value]="selectedStatus"
+                  class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2">
+            <option *ngFor="let option of comicStatusOptions" [value]="option.value">{{ option.text }}</option>
+          </select>
+        </div>
+      </form>
+
+      <div class="mt-6">
+        <label for="upload-image" class="upload-cover clickable">
+          <div
+            class="cover-wrapper flex justify-center items-center border-2 border-dashed border-gray-300 rounded-md h-48">
+            <img class="cover object-cover" alt="Cover"/>
+          </div>
+          <span class="placeholder block text-center text-gray-500 mt-2">Upload Cover Art</span>
+        </label>
+        <input id="upload-image" type="file" accept="image/*" (change)="onImageSelected($event)" hidden/>
+      </div>
+    </div>
+
+    <div class="chapter-group mt-8">
+      <div class="header flex justify-between items-center border-b border-gray-300 pb-2 mb-4">
+        <div class="text-lg font-medium text-gray-700">
+          Chapter List
+        </div>
+        <a class="add-chapter clickable text-blue-500 font-medium" (click)="navigateToAddChapter()">
+          <i class="uil uil-plus-circle mr-2"></i>
+          Add chapter
+        </a>
+      </div>
+
+      <ul class="chapters space-y-2" *ngIf="newComic.chapters.length > 0">
+        <li class="chapter-item flex justify-between items-center p-2 bg-gray-100 rounded-md shadow-sm"
+            *ngFor="let chapter of newComic.chapters">
+          <a class="left text-blue-600 cursor-pointer" (click)="navigateToAddChapter(chapter)">
+            {{ chapter.getChapterName() }}
+          </a>
+          <span class="remove clickable text-red-500 cursor-pointer" (click)="deleteChapter(chapter)">
+            <i class="uil uil-trash-alt"></i>
+          </span>
+        </li>
+      </ul>
+      <div class="no-chapter text-gray-500 text-center mt-4" *ngIf="newComic.chapters.length == 0">No chapters yet</div>
+    </div>
+
+    <div class=" flex justify-end space-x-4 mt-8">
+      <button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded" (click)="goBack()">
+        Back
+      </button>
+      <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+              (click)="postComic()">{{ editId ? 'Update ' : 'Add ' }}
+      </button>
+    </div>
+  </div>
 </div>
 
-<div class="spinner hidden">
-    <div class="loader"></div>
+<div class="spinner hidden fixed inset-0 flex items-center justify-center">
+  <div class="loader border-t-4 border-blue-500 rounded-full w-16 h-16 animate-spin"></div>
 </div>

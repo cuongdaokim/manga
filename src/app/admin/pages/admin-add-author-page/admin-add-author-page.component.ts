@@ -56,9 +56,9 @@ export class AdminAddAuthorPageComponent implements OnInit {
     this.authorService.add(this.newAuthor).subscribe(
       data => {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Thêm tác giả thành công!',
+          title: 'Add author successfully',
           showConfirmButton: false,
           timer: 1000
         }).then(result => {
@@ -66,14 +66,14 @@ export class AdminAddAuthorPageComponent implements OnInit {
         });
       },
       error => {
-        let message = 'Có lỗi xảy ra!';
+        let message = 'Something went wrong';
 
         if (error.status === 304) {
-          message = 'Author đã tồn tại!';
+          message = 'Author already exist';
         }
 
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
           title: message,
           showConfirmButton: false,
@@ -86,9 +86,9 @@ export class AdminAddAuthorPageComponent implements OnInit {
     this.authorService.update(this.newAuthor).subscribe(
       data => {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Cập nhật tác giả thành công!',
+          title: 'Update author successfully',
           showConfirmButton: false,
           timer: 1000
         }).then(result => {
@@ -97,9 +97,9 @@ export class AdminAddAuthorPageComponent implements OnInit {
       },
       error => {
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
-          title: 'Có lỗi xảy ra!',
+          title: 'Something went wrong',
           showConfirmButton: false,
           timer: 1500
         });

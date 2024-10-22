@@ -1,32 +1,22 @@
-<div class="admin-genres-page">
-    <div class="topbar">
-        <div class="search">
-            <form (submit)="search()">
-                <input type="text" placeholder="Tìm kiếm..." [(ngModel)]="searchStr"
-                    [ngModelOptions]="{standalone: true}" (keyup)="offSearch()">
-                <i class="uil uil-search"></i>
-            </form>
-        </div>
-    </div>
-
+<div class="admin-genres-page container mx-auto w-2/3">
     <div class="title">
-        <h2>Quản lý thể loại</h2>
+        <h2 class="font-bold text-3xl my-4">Genre</h2>
     </div>
 
     <div class="details">
         <div class="list-genres">
             <div class="cardHeader">
-                <h2>Danh sách thể loại</h2>
+                <h2>Genre List</h2>
                 <a class="btn clickable" (click)="addGenre()">
                     <i class="uil uil-plus-circle"></i>
-                    Thêm mới
+                    Add
                 </a>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <td>Mã thể loại</td>
-                        <td>Tên thể loại</td>
+                        <td>Genre Id</td>
+                        <td>Genre Name</td>
                         <td></td>
                     </tr>
                 </thead>

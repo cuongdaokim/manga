@@ -1,6 +1,7 @@
-<div class="w-full mr-4 border" >
-  <div class="relative mr-4">
-    <img [src]="comic.getComicCover()" alt="" class="object-cover aspect-[2/3] rounded cursor-pointer" (click)="navigateToComicDetail()">
+<div class="w-full mr-4  ">
+  <div class="relative mr-4 ">
+    <img [src]="comic.getComicCover()" alt="" class="object-cover aspect-[2/3] rounded cursor-pointer"
+         (click)="navigateToComicDetail()">
 
 
     <div class="text-xs text-gray-800">
@@ -11,13 +12,13 @@
     </div>
   </div>
 
-  <div class="text-center mt-2 bg-orange-600 hover:bg-orange-700 text-white rounded p-1.5 mr-4 overflow-hidden">
-    <a (click)="navigateToComicDetail()" class="flex items-center justify-center hover:text-white text-base truncate ">
+  <div
+    class="text-center mt-2 bg-orange-600 hover:bg-orange-700 text-white  px-2 py-1  rounded-2xl mr-4 truncate font-bold">
+    <a (click)="navigateToComicDetail()" class="flex items-center justify-center hover:text-white text-sm truncate ">
       <i class="uil uil-eye mr-1 text-2xl"></i> <!-- Add the view icon -->
       {{ comic.title }}
     </a>
   </div>
-
 
 </div>
 

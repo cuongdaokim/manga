@@ -1,49 +1,52 @@
 <nav>
-    <div class="navigation">
-        <div class="toggle clickable">
-            <img [src]="getCurrentUser()?.getAvatar()" alt="">
-        </div>
-        <ul>
-            <li>
-                <a href="manage">
-                    <span class="icon"><i class="uil uil-house-user"></i></span>
-                    <span class="title">Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="manage/manage-manga">
-                    <span class="icon"><i class="uil uil-books"></i></span>
-                    <span class="title">Manga</span>
-                </a>
-            </li>
-            <li>
-                <a href="manage/manage-genre">
-                    <span class="icon"><i class="uil uil-apps"></i></span>
-                    <span class="title">Genre</span>
-                </a>
-            </li>
-            <li>
-                <a href="manage/manage-author">
-                    <span class="icon"><i class="uil uil-book-reader"></i></span>
-                    <span class="title">Author</span>
-                </a>
-            </li>
-            <li>
-                <a href="manage/manage-account">
-                    <span class="icon"><i class="uil uil-users-alt"></i></span>
-                    <span class="title">Account</span>
-                </a>
-            </li>
-            <li>
-                <a [routerLink]="['']">
-                    <span class="icon"><i class="uil uil-signin"></i></span>
-                    <span class="title">Back</span>
-                </a>
-            </li>
-        </ul>
+  <div class="navigation">
+    <div class="  flex items-center justify-center my-6">
+      <img [src]="getCurrentUser()?.getAvatar()" alt="" class="rounded-full w-12 h-12">
     </div>
+    <ul>
+      <li>
+        <a href="manage">
+          <span class="icon"><i class="uil uil-house-user"></i></span>
+          <span class="title">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="manage/manage-manga">
+          <span class="icon"><i class="uil uil-books"></i></span>
+          <span class="title">Manga</span>
+        </a>
+      </li>
+      <li>
+        <a href="manage/manage-genre">
+          <span class="icon"><i class="uil uil-apps"></i></span>
+          <span class="title">Genre</span>
+        </a>
+      </li>
+      <li>
+        <a href="manage/manage-author">
+          <span class="icon"><i class="uil uil-book-reader"></i></span>
+          <span class="title">Author</span>
+        </a>
+      </li>
+      <li>
+        <a href="manage/manage-account">
+          <span class="icon"><i class="uil uil-users-alt"></i></span>
+          <span class="title">Account</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['']">
+          <span class="icon"><i class="uil uil-signin"></i></span>
+          <span class="title">Back</span>
+        </a>
+      </li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="flex-1">
+    <router-outlet></router-outlet>
+  </div>
+
 </nav>
 
-<body>
-    <router-outlet></router-outlet>
-</body>
+
