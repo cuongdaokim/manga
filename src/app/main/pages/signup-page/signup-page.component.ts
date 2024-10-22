@@ -61,7 +61,7 @@ export class SignupPageComponent implements OnInit {
           showConfirmButton: false,
           timer: 1000
         }).then(result => {
-          this.router.navigateByUrl('/dang-nhap');
+          this.router.navigateByUrl('/login');
         });
       },
       error => {

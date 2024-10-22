@@ -90,11 +90,11 @@ export class AdminComicsPageComponent implements OnInit {
   }
 
   addComic(): void {
-    this.router.navigate(['quan-tri/them-truyen']);
+    this.router.navigate(['manage/add-manga']);
   }
 
   editComic(id: number): void {
-    this.router.navigate([`quan-tri/cap-nhat-truyen/${id}`]);
+    this.router.navigate([`manage/update-manga/${id}`]);
   }
 
   removeComic(id: number): void {

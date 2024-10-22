@@ -170,7 +170,7 @@ export class AdminAddComicPageComponent implements OnInit {
 
     AdminComponent.draftChapter = chapter;
 
-    this.router.navigate(['quan-tri/them-chuong']);
+    this.router.navigate(['manage/add-chapter']);
   }
 
   deleteChapter(chapter: ChapterModel): void {

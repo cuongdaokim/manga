@@ -35,7 +35,7 @@ export class AdminAddAuthorPageComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['quan-tri/quan-ly-tac-gia']);
+    this.router.navigate(['manage/manage-author']);
   }
 
   postAuthor(): void {

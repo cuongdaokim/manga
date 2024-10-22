@@ -1,20 +1,15 @@
-<div class="mini-comic-item">
-    <div class="cover">
-        <img [src]="comic.getComicCover()" alt="">
+<div class="w-full shadow-2xl p-2 border  border-gray-900">
+  <img [src]="comic.getComicCover()" alt="" class="object-cover rounded aspect-[2/3] w-full">
+
+  <div class="text-center">
+    <div class="" (click)="navigateToComicDetail()">{{ comic.title }}</div>
+    <div class="text-sm text-gray-800" (click)="navigateToChapter(comic.continueChapterIndex!)">
+      Continue reading chapter {{ comic.continueChapterIndex }}
     </div>
 
-    <div class="info-group">
-        <a class="title" (click)="navigateToComicDetail()">{{comic.title}}</a>
-
-        <div class="small-info">
-            <a class="chapter" (click)="navigateToChapter(comic.continueChapterIndex!)">
-                Đọc tiếp chương {{comic.continueChapterIndex}} >
-            </a>
-
-            <span class="remove-button" (click)="deleteItem()">
-                <i class="uil uil-times-circle"></i>
-                Xóa
-            </span>
-        </div>
-    </div>
+    <button class="w-full justify-center bg-orange-600 px-2 py-1 flex items-center my-2 " (click)="deleteItem()">
+      <i class="uil uil-times-circle mr-2"></i>
+      <span class="text-sm">Delete</span>
+    </button>
+  </div>
 </div>

@@ -9,6 +9,25 @@
 @import '../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
+.ngx-pagination .current {
+  padding: .1875rem .625rem !important;
+  background: orange !important;
+  color: #fefefe !important;
+  cursor: default !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  margin: 1rem 0 !important;
+}
+
+.ngx-pagination {
+  margin: 1rem 0 !important;
+}
+
 
 :root {
   --primary-color-hue: 220;
@@ -167,6 +186,7 @@ button,
 [hidden] {
   display: none !important;
 }
+
 
 
 

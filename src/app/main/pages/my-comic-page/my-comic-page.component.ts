@@ -80,11 +80,11 @@ export class MyComicPageComponent implements OnInit {
   }
 
   addComic(): void {
-    this.router.navigate(['them-truyen']);
+    this.router.navigate(['add-manga']);
   }
 
   editComic(id: number): void {
-    this.router.navigate([`cap-nhat-truyen/${id}`]);
+    this.router.navigate([`update-manga/${id}`]);
   }
 
   removeComic(id: number): void {

@@ -163,7 +163,7 @@ export class AddComicPageComponent implements OnInit {
 
     MainComponent.draftChapter = chapter;
 
-    this.router.navigate(['them-chuong']);
+    this.router.navigate(['add-chapter']);
   }
 
   deleteChapter(chapter: ChapterModel): void {

@@ -101,7 +101,5 @@ export class HomePageComponent implements OnInit {
     }
   }
 
-  searchByGenre(id: number) {
-    this.router.navigate([`/tim-kiem/the-loai/${id}`]).then(() => window.location.reload());
-  }
+
 }

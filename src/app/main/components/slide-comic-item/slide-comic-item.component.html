@@ -1,18 +1,18 @@
-<div class="w-full mr-4" >
+<div class="w-full mr-4 border" >
   <div class="relative mr-4">
     <img [src]="comic.getComicCover()" alt="" class="object-cover aspect-[2/3] rounded cursor-pointer" (click)="navigateToComicDetail()">
 
 
     <div class="text-xs text-gray-800">
-      <div class="absolute top-2 right-2 flex items-center space-x-1 bg-gray-800/90 p-1 rounded">
+      <div class="absolute top-2 right-2 flex items-center space-x-1 bg-gray-800 p-1 rounded font-bold">
         <i class="uil uil-clock text-white"></i>
         <span class="text-white">{{ newestChapter.getTimeDiff() }}</span>
       </div>
     </div>
   </div>
 
-  <div class="text-center mt-2 bg-orange-600 hover:bg-orange-700 text-white rounded p-2 mr-4 overflow-hidden">
-    <a (click)="navigateToComicDetail()" class="flex items-center justify-center hover:text-white ">
+  <div class="text-center mt-2 bg-orange-600 hover:bg-orange-700 text-white rounded p-1.5 mr-4 overflow-hidden">
+    <a (click)="navigateToComicDetail()" class="flex items-center justify-center hover:text-white text-base truncate ">
       <i class="uil uil-eye mr-1 text-2xl"></i> <!-- Add the view icon -->
       {{ comic.title }}
     </a>

@@ -41,6 +41,11 @@ export class ComicService {
     return this.http.get<ComicModel[]>(getUrl);
   }
 
+  getByAuthorIdOrderByTime(authorId: number): Observable<ComicModel[]> {
+    let getUrl = `${this.apiUrl}/author/${authorId}`;
+    return this.http.get<ComicModel[]>(getUrl);
+  }
+
   getByUserIdOrderByTime(userId: number): Observable<ComicModel[]> {
     let getUrl = `${this.apiUrl}/user/${userId}`;
     return this.http.get<ComicModel[]>(getUrl);

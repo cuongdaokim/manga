@@ -43,11 +43,11 @@ export class AdminAuthorsPageComponent implements OnInit {
   }
 
   addAuthor(): void {
-    this.router.navigate(['quan-tri/them-tac-gia']);
+    this.router.navigate(['manage/add-author']);
   }
 
   editAuthor(id: number): void {
-    this.router.navigate([`quan-tri/cap-nhat-tac-gia/${id}`]);
+    this.router.navigate([`manage/update-author/${id}`]);
   }
 
   removeAuthor(id: number): void {

@@ -5,6 +5,10 @@ import { ChapterModel } from '../models/chapter.model';
 import { ComicModel } from '../models/comic.model';
 import { RoleType, UserModel } from '../models/user.model';
 import { UserService } from '../services/user.service';
+import {GenreModel} from "../models/genre.model";
+import {GenreService} from "../services/genre.service";
+import {AuthorService} from "../services/author.service";
+import {AuthorModel} from "../models/author.model";
 
 @Component({
   selector: 'app-main',
@@ -16,11 +20,13 @@ export class MainComponent implements OnInit {
   static draftComic?: ComicModel;
   static draftChapter?: ChapterModel;
   searchStr: string = '';
+  listGenres: GenreModel[] = [];
+  listAuthors: AuthorModel[] = [];
 
   constructor(
     private elmRef: ElementRef,
     private router: Router,
-    private userService: UserService) { }
+    private userService: UserService, private genreService: GenreService, private authorService: AuthorService) { }
 
   ngOnInit(): void {
     this.initAvatarHoverEvent();
@@ -30,6 +36,13 @@ export class MainComponent implements OnInit {
       this.userService.getById(+userId).subscribe(data =>
         MainComponent.currentUser = Object.assign(new UserModel(), data));
     }
+    this.genreService.getAll().subscribe(data => {
+      this.listGenres = data;
+    });
+
+    this.authorService.getAll().subscribe(data => {
+      this.listAuthors = data;
+    });
   }
 
   getCurrentUser(): UserModel | undefined {
@@ -64,7 +77,7 @@ export class MainComponent implements OnInit {
   }
 
   onSearch(): void {
-    this.router.navigate([`/tim-kiem/${this.searchStr}`]).then(() => window.location.reload());
+    this.router.navigate([`/search/${this.searchStr}`]).then(() => window.location.reload());
   }
 
   initAvatarHoverEvent(): void {
@@ -86,5 +99,13 @@ export class MainComponent implements OnInit {
     hoverPanel.addEventListener('mouseleave', () => {
       hoverPanel.style.display = 'none';
     });
+  }
+
+  searchByGenre(id: number) {
+    this.router.navigate([`/search/genre/${id}`]).then(() => window.location.reload());
+  }
+
+  searchByAuthor(id: number) {
+    this.router.navigate([`/search/author/${id}`]).then(() => window.location.reload());
   }
 }

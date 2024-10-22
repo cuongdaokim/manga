@@ -34,7 +34,7 @@ export class AdminAddGenrePageComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['quan-tri/quan-ly-the-loai']);
+    this.router.navigate(['manage/manage-genre']);
   }
 
   postGenre(): void {

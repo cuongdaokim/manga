@@ -43,11 +43,11 @@ export class AdminGenresPageComponent implements OnInit {
   }
 
   addGenre(): void {
-    this.router.navigate(['quan-tri/them-the-loai']);
+    this.router.navigate(['manage/add-genre']);
   }
 
   editGenre(id: number): void {
-    this.router.navigate([`quan-tri/cap-nhat-the-loai/${id}`]);
+    this.router.navigate([`manage/update-genre/${id}`]);
   }
 
   removeGenre(id: number): void {

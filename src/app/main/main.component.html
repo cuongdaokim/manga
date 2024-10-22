@@ -1,36 +1,70 @@
 <header class=" text-white bg-gray-900">
   <div class="container mx-auto">
-    <div class="flex flex-row  items-center justify-between p-3.5">
+    <div class="flex flex-row  items-center p-6 ">
       <!-- Adding the logo image -->
-      <div class="w-12 flex items-center space-x-2" [routerLink]="['']">
-        <img src="assets/imgs/logo.png" alt="MangaNoob Logo" class="w-8 h-8 object-cover">
+      <div class="w-12 flex items-center flex-1 space-x-2 justify-center cursor-pointer" [routerLink]="['']">
+        <img src="assets/imgs/logo.png" alt="MangaNoob Logo" class="w-10 h-10 object-cover">
         <span class="text-xl font-bold">MangaNoob</span>
       </div>
 
+<!--        &lt;!&ndash; Dropdown for Authors &ndash;&gt;-->
+<!--        <div class="relative group z-40">-->
+<!--          <button class="text-white font-bold py-1 px-3 rounded inline-flex items-center">-->
+<!--            <span>Authors</span>-->
+<!--            <i class="uil uil-angle-down ml-2"></i>-->
+<!--          </button>-->
+<!--          <ul class="absolute hidden text-gray-800 pt-1 group-hover:block bg-white  rounded shadow-lg line-clamp-1 h-96 p-2">-->
+<!--            <li *ngFor="let author of listAuthors" class="">-->
+<!--              <a class="block px-4 py-2 hover:bg-gray-200 hover:text-black" (click)="searchByAuthor(author.id)">-->
+<!--                {{ author.name }}-->
+<!--              </a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+
       <!-- Search Bar -->
-      <form class="flex items-center bg-white text-gray-800 px-2 py-2 rounded-md w-1/2" (submit)="onSearch()">
-        <i class="uil uil-search text-gray-600"></i>
-        <input type="search" placeholder="Find your manga" [(ngModel)]="searchStr"
-               [ngModelOptions]="{standalone: true}"
-               class="focus:outline-none  focus:ring-indigo-500 w-full ml-2">
-      </form>
+      <div class="flex items-center space-x-2 justify-center w-full">
+        <!-- Dropdown for Genres -->
+        <div class="relative group z-40 mr-2">
+          <button class="text-white font-bold py-1 px-3 rounded inline-flex items-center bg-none">
+            <span>Genres</span>
+            <i class="uil uil-angle-down ml-2"></i>
+          </button>
+          <ul class="absolute hidden text-gray-800 pt-1 group-hover:block bg-white  rounded shadow-lg">
+            <li *ngFor="let genre of listGenres" class="">
+              <a class="block px-4 py-2 hover:bg-gray-200 hover:text-black" (click)="searchByGenre(genre.id)">
+                {{ genre.name }}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <form class="flex items-center bg-white text-gray-800 px-2 py-2 rounded-md w-1/2" (submit)="onSearch()">
+          <i class="uil uil-search text-gray-600"></i>
+          <input type="search" placeholder="Find your manga" [(ngModel)]="searchStr"
+                 [ngModelOptions]="{standalone: true}"
+                 class="focus:outline-none  focus:ring-indigo-500 w-full ml-2">
+        </form>
+      </div>
+
 
       <!-- Login and Register icons -->
       <div class="flex space-x-4" [hidden]="getCurrentUser()">
-        <a class="text-white hover:text-gray-400" [routerLink]="['dang-nhap']" title="Login">
+        <a class="text-white hover:text-gray-400" [routerLink]="['login']" title="Login">
           <i class="uil uil-signin text-2xl"></i>
         </a>
-        <a class="text-white hover:text-gray-400" [routerLink]="['dang-ky']" title="Register">
+        <a class="text-white hover:text-gray-400" [routerLink]="['register']" title="Register">
           <i class="uil uil-user-plus text-2xl"></i>
         </a>
       </div>
 
       <!-- User Info -->
       <div class="user-info clickable" [hidden]="!getCurrentUser()">
-        <div class="avatar">
-          <img [src]="getCurrentUser()?.getAvatar()" alt="User Avatar">
+        <div class="flex flex-row items-center ">
+          <img [src]="getCurrentUser()?.getAvatar()" alt="User Avatar" class="w-10 h-10 mr-2">
+          <span>{{ getCurrentUser()?.name }}</span>
         </div>
-        <span>{{getCurrentUser()?.name}}</span>
+
       </div>
     </div>
 
@@ -39,17 +73,19 @@
 
 
 <body>
-    <router-outlet></router-outlet>
+<router-outlet></router-outlet>
 </body>
 
 
 <div class="hover-panel">
-  <a [routerLink]="['thong-tin-ca-nhan']"><i class="uil uil-user"></i>Thông tin cá nhân</a>
-  <a [routerLink]="['truyen-cua-toi']" *ngIf="!isAdmin()"><i class="uil uil-book-alt"></i>Manga của bạn</a>
-  <a [routerLink]="['quan-tri']" *ngIf="isAdmin()"><i class="uil uil-key-skeleton"></i>Quản trị</a>
-  <a (click)="onLogout()"><i class="uil uil-signin"></i>Đăng xuất</a>
+  <a [routerLink]="['my-account']"><i class="uil uil-user"></i>My Account</a>
+  <a [routerLink]="['my-manga']" *ngIf="!isAdmin()"><i class="uil uil-book-alt"></i>My Manga</a>
+  <a [routerLink]="['manage']" *ngIf="isAdmin()"><i class="uil uil-key-skeleton"></i>Manage</a>
+  <a (click)="onLogout()"><i class="uil uil-signin"></i>Logout</a>
 </div>
 
+
+<!--Footer-->
 <footer>
   <div class="footer-container">
     <div class="footer-section logo-section">

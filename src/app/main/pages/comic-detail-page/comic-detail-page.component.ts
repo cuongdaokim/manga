@@ -10,20 +10,30 @@ import { ReviewService } from 'src/app/services/review.service';
 import { Utils } from 'src/app/utils/utils';
 import Swal from 'sweetalert2';
 import { MainComponent } from '../../main.component';
+import {
+  fadeInRightOnEnterAnimation,
+  slideInDownOnEnterAnimation,
+  slideInLeftOnEnterAnimation,
+  slideInRightOnEnterAnimation, slideInUpOnEnterAnimation
+} from "angular-animations";
 
 @Component({
   selector: 'app-comic-detail-page',
   templateUrl: './comic-detail-page.component.html',
-  styleUrls: ['./comic-detail-page.component.scss']
+  styleUrls: ['./comic-detail-page.component.scss'],
+  animations: [slideInRightOnEnterAnimation(), slideInLeftOnEnterAnimation(), slideInDownOnEnterAnimation(), slideInUpOnEnterAnimation(), fadeInRightOnEnterAnimation()]
 })
 export class ComicDetailPageComponent implements OnInit {
   comic: ComicModel = new ComicModel();
+  listComics: ComicModel[] = [];
+  listRecommends: ComicModel[] = [];
   listChapters: ChapterModel[] = [];
   listComments: CommentModel[] = [];
   updatedTime: string = '';
   totalLike: number = 0;
   totalDislike: number = 0;
   reviewedByUser?: ReviewModel;
+  pageIndex: number = 1;
 
   constructor(
     private router: Router,
@@ -31,6 +41,7 @@ export class ComicDetailPageComponent implements OnInit {
     private comicService: ComicService,
     private reviewService: ReviewService,
     private commentService: CommentService) { }
+
 
   ngOnInit(): void {
     const id = this.activeRoute.snapshot.paramMap.get('id');
@@ -52,6 +63,12 @@ export class ComicDetailPageComponent implements OnInit {
 
         this.updatedTime = Utils.getUpdatedDateTime(this.comic.updatedTime);
       });
+
+      this.comicService.getAllPublishedOrderByTime().subscribe(data => {
+        this.listComics = data;
+        this.listRecommends.push(...this.listComics);
+        this.listRecommends = this.listRecommends.sort((a, b) => b.view - a.view).slice(0, 6);
+      });
     }
     else {
       this.router.navigate(['']);
@@ -59,7 +76,7 @@ export class ComicDetailPageComponent implements OnInit {
   }
 
   navigateToChapter(index: number) {
-    this.router.navigate([`./chuong/${index}`], { relativeTo: this.activeRoute });
+    this.router.navigate([`./chapter/${index}`], { relativeTo: this.activeRoute });
   }
 
   getComicReviews(): void {
@@ -122,6 +139,6 @@ export class ComicDetailPageComponent implements OnInit {
   }
 
   searchByGenre(id: number) {
-    this.router.navigate([`/tim-kiem/the-loai/${id}`]).then(() => window.location.reload());
+    this.router.navigate([`/search/genre/${id}`]).then(() => window.location.reload());
   }
 }

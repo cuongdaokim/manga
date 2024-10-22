@@ -23,6 +23,7 @@
     "ngx-owl-carousel-o": "^14.0.1",
     "ngx-pagination": "^6.0.3",
     "owl.carousel": "^2.3.4",
+    "prettier": "^3.3.3",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.6.2",
     "tslib": "^2.3.0",

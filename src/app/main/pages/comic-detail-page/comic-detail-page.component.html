@@ -1,101 +1,134 @@
-<div class="comic-detail-page">
-    <div class="title">
-        <h2>{{comic.title}}</h2>
-        <div class="text-muted">[Cập nhật lúc: {{updatedTime}}]</div>
+<div class="container mx-auto my-12">
+  <div class="grid grid-cols-12 gap-8">
+    <div class="col-span-4 z-40" [@slideInLeftOnEnter]>
+      <img [src]="comic.getComicCover()" alt="" class="w-full aspect-[2/3] object-cover rounded-2xl">
+
     </div>
 
-    <div class="comic-detail">
-        <div class="cover">
-            <img [src]="comic.getComicCover()" alt="">
+    <div class="col-span-8">
+      <div class="flex justify-between">
+        <h2 class="text-4xl font-extrabold mb-4" [@slideInDownOnEnter]>{{ comic.title }}</h2>
+        <div><span class="bg-gray-900 text-white font-bold text-sm p-2 rounded-full">Updated At</span> {{ updatedTime }}
         </div>
-
-        <div>
-            <ul class="detail">
-                <li>
-                    <span><i class="uil uil-user"></i> Người đăng</span>
-                    <span>{{comic.user?.name}}</span>
-                </li>
-                <li>
-                    <span><i class="uil uil-book-reader"></i> Author</span>
-                    <span>{{comic.author?.name}}</span>
-                </li>
-                <li>
-                    <span><i class="uil uil-tag-alt"></i> Genre</span>
-                    <span>
-                        <span *ngFor="let genre of comic.genres; let i = index">
-                            <a (click)="searchByGenre(genre.id)">{{genre.name}}</a>
-                            <span *ngIf="i < comic.genres.length-1"> - </span>
+      </div>
+      <div class="text-xl flex items-center" [@slideInDownOnEnter]>
+        <span class="mr-4"><i class="uil uil-user mr-2"></i>Uploader: </span>
+        <span class="font-bold">{{ comic.user?.name }}</span>
+      </div>
+      <div class="text-xl flex items-center mb-2" [@slideInDownOnEnter]>
+        <span class="mr-4"><i class="uil uil-book-reader font-bold mr-2 "></i>Author: </span>
+        <span>{{ comic.author?.name }}</span>
+      </div>
+      <div class="text-xl flex items-center mb-2" [@slideInDownOnEnter]>
+        <span class="mr-4"><i class="uil uil-tag-alt font-bold mr-2"></i>Genre: </span>
+        <span>
+             <span *ngFor="let genre of comic.genres; let i = index">
+                            <a (click)="searchByGenre(genre.id)"
+                               class="bg-gray-800 text-white px-3 py-2 text-sm hover:text-white rounded-3xl mr-2 font-bold">{{ genre.name }}</a>
                         </span>
-                    </span>
-                </li>
-                <li>
-                    <span><i class="uil uil-eye"></i> Lượt xem</span>
-                    <span>{{comic.view}}</span>
-                </li>
-                <li class="like-group">
-                    <div class="btn-wrapper">
-                        <i class="uil uil-heart btn clickable like" (click)="likeComic(true)"></i>
-                        <span>{{totalLike}}</span>
-                    </div>
-                    <div class="btn-wrapper">
-                        <i class="uil uil-heart-break btn clickable dislike" (click)="likeComic(false)"></i>
-                        <span>{{totalDislike}}</span>
-                    </div>
-                </li>
-            </ul>
+            </span>
+      </div>
+      <div class="text-xl flex items-center mb-2" [@slideInDownOnEnter]>
+        <span class="mr-4"><i class="uil uil-eye mr-2"></i>View: </span>
+        <span>{{ comic.view }}</span>
+      </div>
 
-            <div class="button-group">
-                <button (click)="navigateToChapter(comic.chapters.at(-1)!.chapterIndex)">
-                    Đọc từ đầu
-                </button>
-                <button (click)="navigateToChapter(comic.chapters[0].chapterIndex)">
-                    Đọc mới nhất
-                </button>
+      <div class="flex items-center space-x-4 mb-4" [@slideInDownOnEnter]>
+        <div class="bg-rose-500 w-12 h-12 text-white flex items-center justify-center text-2xl rounded-full">
+          <i class="uil uil-heart btn clickable like"></i>
+          <span>{{ totalLike }}</span>
+        </div>
+
+        <div class="bg-rose-500 px-4 py-2 font-bold rounded-3xl text-white cursor-pointer" (click)="likeComic(true)">
+          Favorite
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <button class="bg-blue-700 " (click)="navigateToChapter(comic.chapters.at(-1)!.chapterIndex)"
+                [@slideInUpOnEnter]>
+          Read from the Start
+        </button>
+        <button class="bg-blue-700 " (click)="navigateToChapter(comic.chapters[0].chapterIndex)" [@slideInUpOnEnter]>
+          Read from the End
+        </button>
+      </div>
+
+      <hr class="border my-6 border-solid border-1 border-gray-300" [@fadeInRightOnEnter]>
+
+
+      <div class="col-span-8 space-y-6" [@slideInUpOnEnter]>
+        <!--Description-->
+        <div>
+          <div class="text-xl font-medium mb-1">
+            <i class="uil uil-file-alt mr-2"></i>
+            <span>Description: </span>
+          </div>
+          <div class=" text-gray-800">
+            {{ comic.description }}
+          </div>
+        </div>
+
+        <!--Chapter-->
+        <div class="list-chapter">
+          <div class="text-xl font-medium mb-1">
+            <i class="uil uil-list-ul mr-2"></i>
+            <span> Chapters</span>
+          </div>
+
+          <div class="">
+            <div class="">
+              <span>Total chapter: </span>
             </div>
-        </div>
-    </div>
 
-    <div class="description">
-        <div class="header">
-            <i class="uil uil-file-alt"></i>
-            <span> NỘI DUNG</span>
-        </div>
-        <div class="desc">
-            {{comic.description}}
-        </div>
-    </div>
-
-    <div class="list-chapter">
-        <div class="header">
-            <i class="uil uil-list-ul"></i>
-            <span> DANH SÁCH CHƯƠNG</span>
-        </div>
-
-        <div class="table">
-            <div class="table-header table-item">
-                <span class="left">Số chương</span>
-                <span>Cập nhật</span>
+            <div c>
+              <div class="flex items-center space-x-2" *ngFor="let chapter of listChapters">
+                <a class="left" (click)="navigateToChapter(chapter.chapterIndex)">{{ chapter.getChapterName() }}</a>
+                <span class="time">{{ chapter.getTimeDiff() }}</span>
+              </div>
             </div>
-
-            <ul class="chapters">
-                <li class="table-item" *ngFor="let chapter of listChapters">
-                    <a class="left" (click)="navigateToChapter(chapter.chapterIndex)">{{chapter.getChapterName()}}</a>
-                    <span class="time">{{chapter.getTimeDiff()}}</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="comment-group">
-        <div class="header">
-            <i class="uil uil-comment-alt-lines"></i>
-            <span> BÌNH LUẬN</span>
+          </div>
         </div>
 
-        <div class="list-comment">
-            <div class="no-comment" *ngIf="listComments.length==0">Chưa có bình luận</div>
+        <!--Comment-->
+        <div class="">
+          <div class="text-xl font-medium mb-1">
+            <i class="uil uil-comment-alt-lines mr-2"></i>
+            <span>Comment</span>
+          </div>
+
+          <div class="list-comment">
+            <div class="no-comment" *ngIf="listComments.length==0">No comments yet</div>
             <app-comment-item *ngFor="let comment of listComments" [comment]="comment" [showChapter]="true">
             </app-comment-item>
+          </div>
         </div>
+
+      </div>
+
     </div>
+  </div>
+
+  <!--Lastest Update-->
+  <div class="my-8" [@slideInUpOnEnter]>
+    <div class="flex flex-row items-center mb-4">
+      <div
+        class="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-red-500 via-orange-400 to-yellow-500 mr-2 rounded">
+        <i class="uil uil-clock text-white text-2xl font-bold"></i>
+      </div>
+      <h2 class="text-xl font-bold">Latest Updates</h2>
+    </div>
+    <div class="grid grid-cols-6 gap-4">
+      <app-main-comic-item
+        *ngFor="let comic of listComics | paginate: { itemsPerPage: 12, currentPage: pageIndex }"
+        [comic]="comic" class="col-span-1"></app-main-comic-item>
+    </div>
+
+    <div class="text-center w-full flex justify-center mt-2">
+      <pagination-controls previousLabel="" nextLabel="" [autoHide]="true" [responsive]="true"
+                           (pageChange)="pageIndex = $event">
+      </pagination-controls>
+    </div>
+  </div>
+
 </div>

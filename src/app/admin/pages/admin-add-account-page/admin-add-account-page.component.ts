@@ -53,7 +53,7 @@ export class AdminAddAccountPageComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['quan-tri/quan-ly-tai-khoan']);
+    this.router.navigate(['manage/manage-account']);
   }
 
   postAccount(): void {

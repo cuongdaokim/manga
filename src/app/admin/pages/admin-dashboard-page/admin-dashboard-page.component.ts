@@ -62,7 +62,7 @@ export class AdminDashboardPageComponent implements OnInit {
   }
 
   editComic(id: number): void {
-    this.router.navigate([`quan-tri/cap-nhat-truyen/${id}`]);
+    this.router.navigate([`manage/update-manga/${id}`]);
   }
 
   removeComic(id: number): void {

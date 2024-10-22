@@ -43,11 +43,11 @@ export class AdminAccountsPageComponent implements OnInit {
   }
 
   addAccount(): void {
-    this.router.navigate(['quan-tri/them-tai-khoan']);
+    this.router.navigate(['manage/add-account']);
   }
 
   editAccount(id: number): void {
-    this.router.navigate([`quan-tri/cap-nhat-tai-khoan/${id}`]);
+    this.router.navigate([`manage/update-account/${id}`]);
   }
 
   lockAccount(account: UserModel): void {
